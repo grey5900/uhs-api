@@ -1,0 +1,476 @@
+<!-- http://hd.cnrds.net/hd/carehistory.do?action=showformmulti&chid=927930123&tableid=txcfx&sdocid=935821847&readonly=true&allreadonly=false&modifyflag=window.parent.global_modified&param=zh,3 -->
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <base href="http://hd.cnrds.net/hd/sdoc/form/txcfx.jsp">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>
+        透析充分性（血透）
+    </title>
+    <link href="/hd/global/css/default.css.jsp" rel="stylesheet" type="text/css">
+    <script language="JavaScript" src="/hd/global/js/encode.js"></script>
+    <script language="JavaScript" src="/hd/global/js/dicdiv.js"></script>
+    <script language="javascript" src="/hd/global/js/check.js"></script>
+    <script type="text/javascript" src="/hd/global/js/popupdiv.js"></script>
+    <script language="JavaScript" src="../js/constraintdiv.js" />"></script>
+    <script type="text/javascript" src="/hd/global/js/sdoc_autovalue.js"></script>
+    <script type="text/javascript" src="../js/linkfield.js"></script>
+
+
+
+
+    <script language="javascript">
+        confirmToDelete = "Are you sure to delete it?";
+    </script>
+
+
+
+
+    <script language="javascript">
+        urlgetdata = "/hd/diclib.do?action=refreshdiv";
+        urlfeedback = "/hd/diclib.do?action=recorditem";
+        urlsavedic = "/hd/diclib.do?action=showaddormodifydiclibform";
+    </script>
+    <STYLE TYPE="text/css">
+        .innerDivTable-style {
+            LINE-HEIGHT: 14px;
+            BACKGROUND-COLOR: #aab1d7
+        }
+        
+        .innerDivTable-style TR {
+            BACKGROUND-COLOR: #ffffff
+        }
+        
+        .innerDivTable-style TD {
+            PADDING-LEFT: 3px;
+            FONT-SIZE: 10px;
+            PADDING-BOTTOM: 1px;
+            PADDING-TOP: 2px;
+            FONT-FAMILY: Arial, Helvetica, sans-serif, "SongTi"
+        }
+        
+        .innerDivTable-style A {
+            TEXT-DECORATION: none
+        }
+    </STYLE>
+    <div id="testdiv" STYLE="display:none;
+	                           Z-INDEX: 100;
+	                           width=202; 
+	                           height=300;
+	                           BORDER-RIGHT: darkgray 1pt solid;
+                             PADDING-RIGHT: 0px;
+                             BORDER-TOP: darkgray 1pt solid;
+                             PADDING-LEFT: 0px;
+                             PADDING-BOTTOM: 0px;
+                             MARGIN: 0px;
+                             BORDER-LEFT: darkgray 1pt solid;
+                             PADDING-TOP: 0px;
+                             BORDER-BOTTOM: darkgray 1pt solid;
+                             BACKGROUND-COLOR: Ivory;
+                             ">
+        <img BORDER=0 src="/hd/images/diclib/dichead.gif" class="drag"><input type="image" src="/hd/images/diclib/closewin.gif" onclick="hidemenuie5();return false;">
+
+        <table width="200" border=0 cols="2">
+            <form name="form_diclib" method="post" onsubmit="javascript:return f();" action="/hd/diclib.do?action=showaddormodifydiclibform&flag=savedic" target="_blank">
+                <tr>
+                    <td colspan=2>
+                        <input type='checkbox' name="dicType" value="A" checked/>
+                        <font style='color:white;background-color:mediumorchid;padding-top:2px;padding-left:2px'>Medical Advice </font>
+                        <input type='checkbox' name="dicType" value="B" checked/>
+                        <font style='color:white;background-color:chocolate;padding-top:2px;padding-left:2px'>ICD </font>
+                        <input type='checkbox' name="dicType" value="Z" checked/>
+                        <font style='color:white;background-color:forestgreen;padding-top:2px;padding-left:2px'>Customized</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <INPUT TYPE="text" style="width:80pt" ID="aText" NAME="aText" VALUE="" onkeydown="if(event.keyCode==13){event.keyCode=0;return false}" onkeyup="clickEnt()">
+                        <INPUT TYPE="button" ID="subBtn" VALUE="Search" title="Searching..." ONCLICK="javascript:var obj=document.getElementById('aText');findName(obj.value,1);" onkeydown="javascript:NumKeyDown();">
+                        <INPUT TYPE="button" ID="saveBtn" VALUE="Save" title="Content inputed saving as dictionary items..." onclick="javascript:return f();" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <div id="innerdiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=80>　<input type="button" name="upPage_btn" title="UpPage" value="<<" onclick="upPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                        <input type="button" name="downPage_btn" value=">>" title="DownPage" onclick="downPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                    <td>
+                        <div id="pageDiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+            </form>
+        </table>
+
+
+        <iframe id="iframediv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:200px; height:298px; z-index:-1; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+    </div>
+
+    <script language="javascript">
+        function f() {
+            if (trim(document.getElementById('aText').value) != "") {
+                document.form_diclib.submit();
+                return true;
+            }
+            return false;
+        }
+
+        function getDicType() {
+            dicTypeString = ""; // 全局变量
+            with(document.form_diclib) {
+                for (var i = 0; i < dicType.length; i++) {
+                    if (dicType[i].checked) {
+                        if ("" != dicTypeString) dicTypeString += ",";
+                        dicTypeString += dicType[i].value;
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <link type="text/css" rel="StyleSheet" href="/hd/global/css/rightmenu.css" />
+    <div id="ie5menu" class="skin0" onMouseover="highlightie5()" onMouseout="lowlightie5()" onClick="jumptoie5();">
+
+        <div class="menuitems" js="showspecialcode();">
+            <img border="0" src="/hd/images/rightmenu/specialcode.gif"> Insert Symbol</div>
+
+        <div class="menuitems" js="showDiv_RClick(global_rightmenu_id,'/hd/sdoc/form/txcfx.jsp');">
+            <img border="0" src="/hd/images/rightmenu/diclibfind.gif"> Dictionary Query</div>
+
+
+
+        <iframe id="backdiv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:180px; height:60px; z-index:-2; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+
+    </div>
+    <script language="JavaScript1.2" src="/hd/global/js/rightmenu.js"></script>
+
+
+
+
+
+    <script language="javascript">
+        /*可以使用全局变量
+                var global_rightmenu_id;　//当前控件的ID
+                var global_rightmenu_param;　//需要传递的参数，可以不设置
+              */
+        function prepareMenu(domainname) {
+            //根据domainname设定菜单项的是否可见
+
+        }
+
+        function showspecialcode() {
+            var winWidth = 430;
+            var winHeight = 400;
+            var winret = window.open("/hd/global/funcjsp/specialcode.jsp?inputid=" + global_rightmenu_id, "showspecialcode",
+                "status=yes, scrollbars=yes, resizable=yes,width=" + winWidth + ",height=" + winHeight);
+            winret.moveTo((screen.width - winWidth) / 2, (screen.height - winHeight) / 3);
+            winret.focus();
+            return false;
+        }
+
+        function clickstr(str) {
+            //alert(str);
+            objevent = document.getElementById(global_rightmenu_id);
+            insertAtCaret(objevent, str);
+        }
+    </script>
+
+    <script language=javascript>
+        var modifytime = null;
+
+        function hasmodified() {}
+
+        function ismodified() {
+            return false;
+        }
+
+        function autosave() {
+
+            if (window.parent.global_modified) {
+                nowdate = new Date();
+                if (modifytime != null && nowdate - modifytime > 36000000)
+                    if (form_submit(form_sdoctable)) form_sdoctable.submit(); //alert("System prompt:please save data!");
+                setTimeout('autosave()', 36000000);
+            }
+        }
+    </script>
+</head>
+
+<body onload="window.focus();window.top.status='';setTimeout('autosave()',600000);">
+
+    <script language="javascript">
+        var whole_constraint_string = "";
+    </script>
+    Browse?
+    <b>透析充分性（血透）</b>
+    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" 　title="Back" onclick="javascript:window.history.go(-1);return false;">
+        <img src="/hd/images/arrow_left.gif" border=0>
+    </a>
+    <form name="form_sdoctable" method="post" onsubmit="javascript:var frmSubmit=form_submit(this);if(frmSubmit)window.parent.global_modified=false;return frmSubmit;" action="/hd/sdoc.do?action=savemulti">
+        <table width="580" border="0" cellpadding="0" cellspacing="1" class="table-style">
+            <tr id="dynamicsDiv001" style="visibility:visible;display:block">
+                <td class="fieldclass" colspan=2>注：每3个月填写一次</td>
+            </tr>
+            <tr id="dynamicsDiv002" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">检查日期
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" name="jcrq" size="8" value="2015-12-02">
+                    <IMG style="cursor:hand" alt="Please input correct date" onclick="showx = window.screen.width/2 - 100 ;showy = window.screen.height/2  -100; newWINwidth = 210 + 4 + 18;retval = window.showModalDialog('/hd/global/js/calpopup/Calendardlg.jsp?by=100&ey=20', '', 'dialogWidth:197px; dialogHeight:210px; dialogLeft:'+showx+'px; dialogTop:'+showy+'px; status:no; directories:yes;scrollbars:no;Resizable=no; '  );if( retval != null ){jcrq.value = retval;}return false;" src="/hd/global/js/calpopup/datetime.gif" width=16 height=16>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv003" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">身高
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="身高" name="height" title="Decimal .value range: 0.5-2.5" size="8" value="1.52"> m 【注意：单位米（m），允许范围0.5-2.5】
+                </td>
+            </tr>
+            <tr id="dynamicsDiv004" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">体重
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="体重" name="weight" title="Decimal .value range: " size="8" value="53.5"> Kg 【填写此次透析充分性评价时干体重】
+                </td>
+            </tr>
+            <tr id="dynamicsDiv005" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">BMI </td>
+                <td width="420">
+                    <input onfocus="hasmodified();e_bmi_onfocus(document.form_sdoctable);" onclick="" onblur="" type="text" maxLength="18" alt="BMI" name="bmi" title="Decimal .value range: " size="8" value="23.156164"> 【注意：点击自动计算】
+                </td>
+            </tr>
+            <tr id="dynamicsDiv006" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">体表面积 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();e_bmtj_onfocus(document.form_sdoctable);" onclick="" onblur="" type="text" maxLength="18" alt="体表面积" name="bmtj" title="Decimal .value range: " size="8" value="1.5807"> m^2【注意：点击自动计算】
+                </td>
+            </tr>
+            <tr id="dynamicsDiv007" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">透前尿素 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="透前尿素" name="tqns" title="Decimal .value range: 0-100" size="8" value="17.23"> mmol/L
+                </td>
+            </tr>
+            <tr id="dynamicsDiv008" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">透后尿素 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="透后尿素" name="thns" title="Decimal .value range: 1-30" size="8" value="3.36"> mmol/L
+                </td>
+            </tr>
+            <tr id="dynamicsDiv009" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">透析时间 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="透析时间" name="txsj" title="Decimal .value range: 0-10" size="8" value="4.0"> h
+                </td>
+            </tr>
+            <tr id="dynamicsDiv010" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">超滤量 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="超滤量" name="cll" title="Decimal .value range: 0-10" size="8" value="1.0"> L
+                </td>
+            </tr>
+            <tr id="dynamicsDiv011" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">URR </td>
+                <td width="420">
+                    <input onfocus="hasmodified();e_upr_onfocus(document.form_sdoctable);" onclick="" onblur="" type="text" maxLength="18" alt="URR" name="upr" title="Decimal .value range: " size="8" value="80.49913"> % 【注意：点击自动计算】
+                </td>
+            </tr>
+            <tr id="dynamicsDiv012" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">spKt/V </td>
+                <td width="420">
+                    <input onfocus="hasmodified();e_spkt_onfocus(document.form_sdoctable);" onclick="" onblur="" type="text" maxLength="18" alt="spKt/V" name="spkt" title="Decimal .value range: " size="8" value="1.7317876"> 【注意：点击自动计算】
+                </td>
+            </tr>
+
+
+        </table>
+        <input type="hidden" name="rid" value="927930123" />
+        <input type="hidden" name="sdocid" value="935821847" />
+        <input type="hidden" name="param" value="zh,3" />
+        <input type="hidden" name="modifyflag" value="window.parent.global_modified" />
+        <input type="hidden" name="comefromlink" value="null" />
+        <input type="hidden" name="sdoctableid" value="txcfx" />
+        <input type="hidden" name="id" value="927513630" />
+        <input type="hidden" name="field_hidden_flag_00" value="" />
+    </form>
+    <script language="javascript">
+        global_modified = false;
+        eval(whole_constraint_string);
+
+        function e_bmi_onfocus(objform) {
+            objform.bmi.value = Number((objform.weight.value) / ((objform.height.value) * (objform.height.value)))
+        }
+
+        function e_bmtj_onfocus(objform) {
+            objform.bmtj.value = Number((objform.weight.value) * 0.0124 + (objform.height.value) * 0.61 - 0.0099)
+        }
+
+        function e_upr_onfocus(objform) {
+            if (Number(objform.tqns.value) != 0) {
+                objform.upr.value = Number((objform.tqns.value - objform.thns.value) * 100 / objform.tqns.value)
+            }
+        }
+
+        function e_spkt_onfocus(objform) {
+            objform.spkt.value = Number(-1 * Math.log(objform.thns.value / objform.tqns.value - 0.008 * objform.thns.value / objform.txsj.value) + (4 - (3.5 * objform.thns.value / objform.tqns.value)) * (objform.cll.value / objform.weight.value))
+        }
+
+        function form_submit(objform) {
+            var fixThis = "";
+            var field_hidden_flag_00 = new Array();
+            reg = /^[0-9]{4}\-{1}[0-9]{1,2}\-{1}[0-9]{1,2}$/;
+            if (objform.jcrq.value != "") {
+                if (!reg.test(objform.jcrq.value)) {
+                    alert('Invalid date');
+                    return false;
+                }
+            }
+            if (document.getElementById("dynamicsDiv002").style.visibility == "visible" && (objform.jcrq.value == null || objform.jcrq.value == "")) fixThis += "[检查日期] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv002").style.visibility == "visible")) {
+                field_hidden_flag_00.push('jcrq');
+            }
+            if (!(isAFloat(objform.height.value))) {
+                fixThis += "[" + objform.height.alt + "] Please input decimal.\n";
+            } else if (objform.height.value != "") {
+                value_range_and_legal = new Number(objform.height.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 0.5 && value_range_and_legal <= 2.5);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.height.alt + "] Out of range! \n";
+                }
+            }
+            if (document.getElementById("dynamicsDiv003").style.visibility == "visible" && (objform.height.value == null || objform.height.value == "")) fixThis += "[身高] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv003").style.visibility == "visible")) {
+                field_hidden_flag_00.push('height');
+            }
+            if (!(isAFloat(objform.weight.value))) {
+                fixThis += "[" + objform.weight.alt + "] Please input decimal.\n";
+            }
+            if (document.getElementById("dynamicsDiv004").style.visibility == "visible" && (objform.weight.value == null || objform.weight.value == "")) fixThis += "[体重] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv004").style.visibility == "visible")) {
+                field_hidden_flag_00.push('weight');
+            }
+            if (!(isAFloat(objform.bmi.value))) {
+                fixThis += "[" + objform.bmi.alt + "] Please input decimal.\n";
+            }
+            if (!(document.getElementById("dynamicsDiv005").style.visibility == "visible")) {
+                field_hidden_flag_00.push('bmi');
+            }
+            if (!(isAFloat(objform.bmtj.value))) {
+                fixThis += "[" + objform.bmtj.alt + "] Please input decimal.\n";
+            }
+            if (!(document.getElementById("dynamicsDiv006").style.visibility == "visible")) {
+                field_hidden_flag_00.push('bmtj');
+            }
+            if (!(isAFloat(objform.tqns.value))) {
+                fixThis += "[" + objform.tqns.alt + "] Please input decimal.\n";
+            } else if (objform.tqns.value != "") {
+                value_range_and_legal = new Number(objform.tqns.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 0.0 && value_range_and_legal <= 100.0);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.tqns.alt + "] Out of range! \n";
+                }
+            }
+            if (!(document.getElementById("dynamicsDiv007").style.visibility == "visible")) {
+                field_hidden_flag_00.push('tqns');
+            }
+            if (!(isAFloat(objform.thns.value))) {
+                fixThis += "[" + objform.thns.alt + "] Please input decimal.\n";
+            } else if (objform.thns.value != "") {
+                value_range_and_legal = new Number(objform.thns.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 1.0 && value_range_and_legal <= 30.0);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.thns.alt + "] Out of range! \n";
+                }
+            }
+            if (!(document.getElementById("dynamicsDiv008").style.visibility == "visible")) {
+                field_hidden_flag_00.push('thns');
+            }
+            if (!(isAFloat(objform.txsj.value))) {
+                fixThis += "[" + objform.txsj.alt + "] Please input decimal.\n";
+            } else if (objform.txsj.value != "") {
+                value_range_and_legal = new Number(objform.txsj.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 0.0 && value_range_and_legal <= 10.0);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.txsj.alt + "] Out of range! \n";
+                }
+            }
+            if (!(document.getElementById("dynamicsDiv009").style.visibility == "visible")) {
+                field_hidden_flag_00.push('txsj');
+            }
+            if (!(isAFloat(objform.cll.value))) {
+                fixThis += "[" + objform.cll.alt + "] Please input decimal.\n";
+            } else if (objform.cll.value != "") {
+                value_range_and_legal = new Number(objform.cll.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 0.0 && value_range_and_legal <= 10.0);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.cll.alt + "] Out of range! \n";
+                }
+            }
+            if (!(document.getElementById("dynamicsDiv010").style.visibility == "visible")) {
+                field_hidden_flag_00.push('cll');
+            }
+            if (!(isAFloat(objform.upr.value))) {
+                fixThis += "[" + objform.upr.alt + "] Please input decimal.\n";
+            }
+            if (!(document.getElementById("dynamicsDiv011").style.visibility == "visible")) {
+                field_hidden_flag_00.push('upr');
+            }
+            if (!(isAFloat(objform.spkt.value))) {
+                fixThis += "[" + objform.spkt.alt + "] Please input decimal.\n";
+            }
+            if (!(document.getElementById("dynamicsDiv012").style.visibility == "visible")) {
+                field_hidden_flag_00.push('spkt');
+            }
+            objform.field_hidden_flag_00.value = field_hidden_flag_00.join(',');
+            if (fixThis != "") {
+                alert(fixThis);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function clearradio(radioname) {
+            var rn = document.getElementsByName(radioname);
+            for (i = 0; i < rn.length; i++) {
+                rn[i].checked = false;
+            }
+        }
+        linkFieldReadonly = true;
+        var linkFieldObjNameStr = ""
+        initAllLinkFieldDiv(linkFieldObjNameStr);
+    </script>
+</body>
+
+</html>

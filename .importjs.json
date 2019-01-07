@@ -1,0 +1,14 @@
+{
+    "lookupPaths": ["api"],
+    "excludes": ["api/__tests__", "actions/__tests__"],
+    "environments": ["meteor", "node"],
+    "groupImports": true,
+    "importDevDependencies": true,
+    "useRelativePaths": true,
+    "stripFileExtensions": [".web.js", ".js", ".json"],
+    "namedExports": {
+        "api/actions": [
+            "config"
+        ]
+    }
+}

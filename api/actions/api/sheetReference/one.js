@@ -1,0 +1,27 @@
+/*
+ * Copyright(c) omk 2016
+ * Filename: one.js
+ * Author  : Lin Chen <lc@omk.io>
+ * Create  : 星期六, 27 二月 2016.
+ */
+import mongoose from 'mongoose';
+import config from '../../config';
+const SheetReference = mongoose.model('SheetReference');
+
+export default function one(req) {
+
+  return new Promise((resolve, reject) => {
+
+    SheetReference.findOne({_id: req.body.id})
+      .exec((err, doc) => {
+        if (err) {
+          reject({msg: '查找失败'});
+        } else {
+          resolve({
+            code: config.code.success,
+            data: doc
+          });
+        }
+      });
+  });
+}

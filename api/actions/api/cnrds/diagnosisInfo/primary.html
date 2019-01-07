@@ -1,0 +1,455 @@
+<!-- http://hd.cnrds.net/hd/carehistory.do?action=showform&chid=927930123&tableid=yfbzd&modifyflag=window.parent.global_modified&param=fx,0 -->
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <base href="http://hd.cnrds.net/hd/sdoc/form/yfbzd.jsp">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta charset = "utf-8">
+    <title>
+        原发病诊断
+    </title>
+    <link href="/hd/global/css/default.css.jsp" rel="stylesheet" type="text/css">
+    <script language="JavaScript" src="/hd/global/js/encode.js"></script>
+    <script language="JavaScript" src="/hd/global/js/dicdiv.js"></script>
+    <script language="javascript" src="/hd/global/js/check.js"></script>
+    <script type="text/javascript" src="/hd/global/js/popupdiv.js"></script>
+    <script language="JavaScript" src="../js/constraintdiv.js" />"></script>
+    <script type="text/javascript" src="/hd/global/js/sdoc_autovalue.js"></script>
+    <script type="text/javascript" src="../js/linkfield.js"></script>
+
+
+
+
+    <script language="javascript">
+        confirmToDelete = "Are you sure to delete it?";
+    </script>
+
+
+
+
+    <script language="javascript">
+        urlgetdata = "/hd/diclib.do?action=refreshdiv";
+        urlfeedback = "/hd/diclib.do?action=recorditem";
+        urlsavedic = "/hd/diclib.do?action=showaddormodifydiclibform";
+    </script>
+    <STYLE TYPE="text/css">
+        .innerDivTable-style {
+            LINE-HEIGHT: 14px;
+            BACKGROUND-COLOR: #aab1d7
+        }
+        
+        .innerDivTable-style TR {
+            BACKGROUND-COLOR: #ffffff
+        }
+        
+        .innerDivTable-style TD {
+            PADDING-LEFT: 3px;
+            FONT-SIZE: 10px;
+            PADDING-BOTTOM: 1px;
+            PADDING-TOP: 2px;
+            FONT-FAMILY: Arial, Helvetica, sans-serif, "SongTi"
+        }
+        
+        .innerDivTable-style A {
+            TEXT-DECORATION: none
+        }
+    </STYLE>
+    <div id="testdiv" STYLE="display:none;
+	                           Z-INDEX: 100;
+	                           width=202; 
+	                           height=300;
+	                           BORDER-RIGHT: darkgray 1pt solid;
+                             PADDING-RIGHT: 0px;
+                             BORDER-TOP: darkgray 1pt solid;
+                             PADDING-LEFT: 0px;
+                             PADDING-BOTTOM: 0px;
+                             MARGIN: 0px;
+                             BORDER-LEFT: darkgray 1pt solid;
+                             PADDING-TOP: 0px;
+                             BORDER-BOTTOM: darkgray 1pt solid;
+                             BACKGROUND-COLOR: Ivory;
+                             ">
+        <img BORDER=0 src="/hd/images/diclib/dichead.gif" class="drag"><input type="image" src="/hd/images/diclib/closewin.gif" onclick="hidemenuie5();return false;">
+
+        <table width="200" border=0 cols="2">
+            <form name="form_diclib" method="post" onsubmit="javascript:return f();" action="/hd/diclib.do?action=showaddormodifydiclibform&flag=savedic" target="_blank">
+                <tr>
+                    <td colspan=2>
+                        <input type='checkbox' name="dicType" value="A" checked/>
+                        <font style='color:white;background-color:mediumorchid;padding-top:2px;padding-left:2px'>Medical Advice </font>
+                        <input type='checkbox' name="dicType" value="B" checked/>
+                        <font style='color:white;background-color:chocolate;padding-top:2px;padding-left:2px'>ICD </font>
+                        <input type='checkbox' name="dicType" value="Z" checked/>
+                        <font style='color:white;background-color:forestgreen;padding-top:2px;padding-left:2px'>Customized</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <INPUT TYPE="text" style="width:80pt" ID="aText" NAME="aText" VALUE="" onkeydown="if(event.keyCode==13){event.keyCode=0;return false}" onkeyup="clickEnt()">
+                        <INPUT TYPE="button" ID="subBtn" VALUE="Search" title="Searching..." ONCLICK="javascript:var obj=document.getElementById('aText');findName(obj.value,1);" onkeydown="javascript:NumKeyDown();">
+                        <INPUT TYPE="button" ID="saveBtn" VALUE="Save" title="Content inputed saving as dictionary items..." onclick="javascript:return f();" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <div id="innerdiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=80>　<input type="button" name="upPage_btn" title="UpPage" value="<<" onclick="upPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                        <input type="button" name="downPage_btn" value=">>" title="DownPage" onclick="downPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                    <td>
+                        <div id="pageDiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+            </form>
+        </table>
+
+
+        <iframe id="iframediv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:200px; height:298px; z-index:-1; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+    </div>
+
+    <script language="javascript">
+        function f() {
+            if (trim(document.getElementById('aText').value) != "") {
+                document.form_diclib.submit();
+                return true;
+            }
+            return false;
+        }
+
+        function getDicType() {
+            dicTypeString = ""; // 全局变量
+            with(document.form_diclib) {
+                for (var i = 0; i < dicType.length; i++) {
+                    if (dicType[i].checked) {
+                        if ("" != dicTypeString) dicTypeString += ",";
+                        dicTypeString += dicType[i].value;
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <link type="text/css" rel="StyleSheet" href="/hd/global/css/rightmenu.css" />
+    <div id="ie5menu" class="skin0" onMouseover="highlightie5()" onMouseout="lowlightie5()" onClick="jumptoie5();">
+
+        <div class="menuitems" js="showspecialcode();">
+            <img border="0" src="/hd/images/rightmenu/specialcode.gif"> Insert Symbol</div>
+
+        <div class="menuitems" js="showDiv_RClick(global_rightmenu_id,'/hd/sdoc/form/yfbzd.jsp');">
+            <img border="0" src="/hd/images/rightmenu/diclibfind.gif"> Dictionary Query</div>
+
+
+
+        <iframe id="backdiv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:180px; height:60px; z-index:-2; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+
+    </div>
+    <script language="JavaScript1.2" src="/hd/global/js/rightmenu.js"></script>
+
+
+
+
+
+    <script language="javascript">
+        /*可以使用全局变量
+                var global_rightmenu_id;　//当前控件的ID
+                var global_rightmenu_param;　//需要传递的参数，可以不设置
+              */
+        function prepareMenu(domainname) {
+            //根据domainname设定菜单项的是否可见
+
+        }
+
+        function showspecialcode() {
+            var winWidth = 430;
+            var winHeight = 400;
+            var winret = window.open("/hd/global/funcjsp/specialcode.jsp?inputid=" + global_rightmenu_id, "showspecialcode",
+                "status=yes, scrollbars=yes, resizable=yes,width=" + winWidth + ",height=" + winHeight);
+            winret.moveTo((screen.width - winWidth) / 2, (screen.height - winHeight) / 3);
+            winret.focus();
+            return false;
+        }
+
+        function clickstr(str) {
+            //alert(str);
+            objevent = document.getElementById(global_rightmenu_id);
+            insertAtCaret(objevent, str);
+        }
+    </script>
+
+    <script language=javascript>
+        var modifytime = null;
+
+        function hasmodified() {
+            window.parent.global_modified = true;
+            modifytime = new Date();
+        }
+
+        function ismodified() {
+            return window.parent.global_modified;
+            return false;
+        }
+
+        function autosave() {
+
+            if (window.parent.global_modified) {
+                nowdate = new Date();
+                if (modifytime != null && nowdate - modifytime > 36000000)
+                    if (form_submit(form_sdoctable)) form_sdoctable.submit(); //alert("System prompt:please save data!");
+                setTimeout('autosave()', 36000000);
+            }
+        }
+    </script>
+</head>
+
+<body onkeydown="if(event.keyCode==83&&event.ctrlKey) if(form_submit(form_sdoctable)) form_sdoctable.submit();" onload="window.focus();window.top.status='';setTimeout('autosave()',600000);">
+
+    <script language="javascript">
+        var whole_constraint_string = "dynamicShow(\'dynamicsDiv004\',\'yfzdfl\',\'radio\',\'1\',\'dynamicsDiv003\');dynamicShow(\'dynamicsDiv006\',\'yfzdfl\',\'radio\',\'2\',\'dynamicsDiv003\');dynamicShow(\'dynamicsDiv008\',\'yfzdfl\',\'radio\',\'3\',\'dynamicsDiv003\');dynamicShow(\'dynamicsDiv010\',\'yfzdfl\',\'radio\',\'4\',\'dynamicsDiv003\');dynamicShow(\'dynamicsDiv012\',\'yfzdfl\',\'radio\',\'6\',\'dynamicsDiv003\');dynamicShow(\'dynamicsDiv014\',\'yfzdfl\',\'radio\',\'7\',\'dynamicsDiv003\');dynamicShow(\'dynamicsDiv005\',\'yfx\',\'radio\',\'7\',\'dynamicsDiv004\');dynamicShow(\'dynamicsDiv007\',\'jfx\',\'radio\',\'16\',\'dynamicsDiv006\');dynamicShow(\'dynamicsDiv009\',\'ycjxtxsb\',\'radio\',\'6\',\'dynamicsDiv008\');dynamicShow(\'dynamicsDiv011\',\'sxgjzjb\',\'radio\',\'11\',\'dynamicsDiv010\');dynamicShow(\'dynamicsDiv013\',\'mnxgrhjs\',\'radio\',\'4\',\'dynamicsDiv012\');dynamicShow(\'dynamicsDiv015\',\'szqcsh\',\'radio\',\'5\',\'dynamicsDiv014\');";
+    </script>
+    <b>原发病诊断</b>
+    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" title="Back" onclick="javascript:window.history.go(-1);return false;">
+        <img src="/hd/images/arrow_left.gif" border=0>
+    </a>
+    <form name="form_sdoctable" method="post" onsubmit="javascript:var frmSubmit=form_submit(this);if(frmSubmit)window.parent.global_modified=false;return frmSubmit;" action="/hd/sdoc.do?action=save">
+        <table width="580" border="0" cellpadding="0" cellspacing="1" class="table-style">
+            <tr id="dynamicsDiv001" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">诊断日期
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" name="jcrq" size="8" value="2015-08-25">
+                    <IMG style="cursor:hand" alt="Please input correct date" onclick="showx = window.screen.width/2 - 100 ;showy = window.screen.height/2  -100; newWINwidth = 210 + 4 + 18;retval = window.showModalDialog('/hd/global/js/calpopup/Calendardlg.jsp?by=100&ey=20', '', 'dialogWidth:197px; dialogHeight:210px; dialogLeft:'+showx+'px; dialogTop:'+showy+'px; status:no; directories:yes;scrollbars:no;Resizable=no; '  );if( retval != null ){jcrq.value = retval;}return false;" src="/hd/global/js/calpopup/datetime.gif" width=16 height=16>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv002" style="visibility:visible;display:block">
+                <td class="fieldclass" colspan=2>原发病诊断</td>
+            </tr>
+            <tr id="dynamicsDiv003" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">原发病诊断分类
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="yfzdfl_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_0" name="yfzdfl" value="1" checked>原发性肾小球疾病</label><br> <label for="yfzdfl_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_1" name="yfzdfl" value="2" >继发性肾小球疾病</label><br> <label for="yfzdfl_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_2" name="yfzdfl" value="3" >遗传性及先天性肾病</label><br> <label for="yfzdfl_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_3" name="yfzdfl" value="4" >肾小管间质疾病</label><br> <label for="yfzdfl_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_4" name="yfzdfl" value="5" >泌尿系肿瘤</label><br> <label for="yfzdfl_5"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_5" name="yfzdfl" value="6" >泌尿系感染和结石</label><br> <label for="yfzdfl_6"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_6" name="yfzdfl" value="7" >肾脏切除术后</label><br> <label for="yfzdfl_7"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_7" name="yfzdfl" value="8" >急性肾衰</label><br> <label for="yfzdfl_8"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_8" name="yfzdfl" value="9" >移植肾失功</label><br> <label for="yfzdfl_9"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfzdfl_9" name="yfzdfl" value="10" >不详</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv004" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....原发性肾小球疾病
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('yfx');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="yfx_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfx_0" name="yfx" value="1" >急性肾炎综合征</label><br> <label for="yfx_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfx_1" name="yfx" value="2" >急进性肾炎综合征</label><br> <label for="yfx_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfx_2" name="yfx" value="4" >慢性肾炎综合征</label><br> <label for="yfx_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfx_3" name="yfx" value="5" >肾病综合征</label><br> <label for="yfx_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfx_4" name="yfx" value="3" >血尿</label><br> <label for="yfx_5"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfx_5" name="yfx" value="6" >孤立性蛋白尿</label><br> <label for="yfx_6"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="yfx_6" name="yfx" value="7" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv005" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其它原发性肾小球肾病 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qtyfxsm" name="qtyfxsm" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv006" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....继发性肾小球疾病
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('jfx');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="jfx_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_0" name="jfx" value="1" >高血压肾损害</label><br> <label for="jfx_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_1" name="jfx" value="2" >糖尿病肾病</label><br> <label for="jfx_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_2" name="jfx" value="3" >肥胖相关性肾病</label><br> <label for="jfx_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_3" name="jfx" value="4" >淀粉样变性</label><br> <label for="jfx_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_4" name="jfx" value="5" >多发骨髓瘤肾病</label><br> <label for="jfx_5"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_5" name="jfx" value="6" >狼疮性肾炎</label><br> <label for="jfx_6"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_6" name="jfx" value="7" >系统性血管炎肾脏损害</label><br> <label for="jfx_7"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_7" name="jfx" value="8" >过敏紫癜性肾炎</label><br> <label for="jfx_8"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_8" name="jfx" value="9" >血栓性微血管病</label><br> <label for="jfx_9"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_9" name="jfx" value="10" >干燥综合征肾损害</label><br> <label for="jfx_10"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_10" name="jfx" value="18" >硬皮病肾损害</label><br> <label for="jfx_11"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_11" name="jfx" value="11" >类风湿性关节炎和强直性脊柱炎肾损害</label><br> <label for="jfx_12"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_12" name="jfx" value="17" >银屑病肾损害</label><br> <label for="jfx_13"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_13" name="jfx" value="12" >乙型肝炎病毒相关性肾炎</label><br> <label for="jfx_14"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_14" name="jfx" value="13" >丙型肝炎病毒相关性肾炎</label><br> <label for="jfx_15"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_15" name="jfx" value="14" >HIV相关性肾损害</label><br> <label for="jfx_16"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_16" name="jfx" value="15" >流行性出血热肾损害</label><br> <label for="jfx_17"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jfx_17" name="jfx" value="16" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv007" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其它继发性肾小球肾病说明 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qtzdsm" name="qtzdsm" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv008" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....遗传性及先天性肾病
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('ycjxtxsb');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="ycjxtxsb_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_0" name="ycjxtxsb" value="1" >多囊肾病</label><br> <label for="ycjxtxsb_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_1" name="ycjxtxsb" value="2" >Alport综合征</label><br> <label for="ycjxtxsb_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_2" name="ycjxtxsb" value="8" >薄基底膜肾病</label><br> <label for="ycjxtxsb_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_3" name="ycjxtxsb" value="3" >近端肾小管损害及Fanconi综合征</label><br> <label for="ycjxtxsb_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_4" name="ycjxtxsb" value="7" >Bartter综合征</label><br> <label for="ycjxtxsb_5"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_5" name="ycjxtxsb" value="4" >Fabry病</label><br> <label for="ycjxtxsb_6"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_6" name="ycjxtxsb" value="5" >脂蛋白肾病</label><br> <label for="ycjxtxsb_7"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ycjxtxsb_7" name="ycjxtxsb" value="6" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv009" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其它遗传性及先天性肾病 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qtycjxtxsb" name="qtycjxtxsb" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv010" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....肾小管间质疾病
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('sxgjzjb');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="sxgjzjb_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_0" name="sxgjzjb" value="1" >急性肾小管间质性肾炎</label><br> <label for="sxgjzjb_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_1" name="sxgjzjb" value="2" >慢性肾小管间质性肾炎</label><br> <label for="sxgjzjb_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_2" name="sxgjzjb" value="3" >急性肾小管坏死</label><br> <label for="sxgjzjb_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_3" name="sxgjzjb" value="4" >肾小管性酸中毒</label><br> <label for="sxgjzjb_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_4" name="sxgjzjb" value="5" >反流性肾病</label><br> <label for="sxgjzjb_5"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_5" name="sxgjzjb" value="6" >梗阻性肾病</label><br> <label for="sxgjzjb_6"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_6" name="sxgjzjb" value="7" >马兜铃酸肾病</label><br> <label for="sxgjzjb_7"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_7" name="sxgjzjb" value="8" >造影剂肾病</label><br> <label for="sxgjzjb_8"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_8" name="sxgjzjb" value="9" >重金属中毒性肾脏损害</label><br> <label for="sxgjzjb_9"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_9" name="sxgjzjb" value="10" >放射性肾病及抗肿瘤药物所致的肾损害</label><br> <label for="sxgjzjb_10"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_10" name="sxgjzjb" value="12" >痛风性肾病</label><br> <label for="sxgjzjb_11"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="sxgjzjb_11" name="sxgjzjb" value="11" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv011" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其他肾小管间质疾病 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qtsxgjzjb" name="qtsxgjzjb" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv012" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....泌尿系感染和结石
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('mnxgrhjs');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="mnxgrhjs_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mnxgrhjs_0" name="mnxgrhjs" value="1" >慢性肾盂肾炎</label><br> <label for="mnxgrhjs_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mnxgrhjs_1" name="mnxgrhjs" value="2" >泌尿系结核</label><br> <label for="mnxgrhjs_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mnxgrhjs_2" name="mnxgrhjs" value="3" >肾结石</label><br> <label for="mnxgrhjs_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mnxgrhjs_3" name="mnxgrhjs" value="4" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv013" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其它泌尿系感染和结石 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qtmixgrhjs" name="qtmixgrhjs" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv014" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....肾脏切除原因
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('szqcsh');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="szqcsh_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="szqcsh_0" name="szqcsh" value="1" >肾脏肿瘤</label><br> <label for="szqcsh_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="szqcsh_1" name="szqcsh" value="2" >肾结核</label><br> <label for="szqcsh_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="szqcsh_2" name="szqcsh" value="3" >肾脏囊肿</label><br> <label for="szqcsh_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="szqcsh_3" name="szqcsh" value="4" >肾发育不良</label><br> <label for="szqcsh_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="szqcsh_4" name="szqcsh" value="5" >其它 </label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv015" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其他肾脏切除原因 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qtszqcyy" name="qtszqcyy" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Save">
+                    <input type="reset" value="Reset" onclick="setTimeout('eval(whole_constraint_string);initAllLinkFieldDiv(linkFieldObjNameStr);', 100);">
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="rid" value="927930123" />
+        <input type="hidden" name="sdocid" value="927633169" />
+        <input type="hidden" name="param" value="fx,0" />
+        <input type="hidden" name="modifyflag" value="window.parent.global_modified" />
+        <input type="hidden" name="comefromlink" value="null" />
+        <input type="hidden" name="sdoctableid" value="yfbzd" />
+        <input type="hidden" name="id" value="927665942" />
+        <input type="hidden" name="field_hidden_flag_00" value="" />
+    </form>
+    <script language="javascript">
+        eval(whole_constraint_string);
+
+        function form_submit(objform) {
+            var fixThis = "";
+            var field_hidden_flag_00 = new Array();
+            reg = /^[0-9]{4}\-{1}[0-9]{1,2}\-{1}[0-9]{1,2}$/;
+            if (objform.jcrq.value != "") {
+                if (!reg.test(objform.jcrq.value)) {
+                    alert('Invalid date');
+                    return false;
+                }
+            }
+            if (document.getElementById("dynamicsDiv001").style.visibility == "visible" && (objform.jcrq.value == null || objform.jcrq.value == "")) fixThis += "[诊断日期] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv001").style.visibility == "visible")) {
+                field_hidden_flag_00.push('jcrq');
+            }
+            if (document.getElementById("dynamicsDiv003").style.visibility == "visible" && !radioChecked(objform.yfzdfl)) fixThis += "[原发病诊断分类] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv003").style.visibility == "visible")) {
+                field_hidden_flag_00.push('yfzdfl');
+            }
+            if (!(document.getElementById("dynamicsDiv004").style.visibility == "visible")) {
+                field_hidden_flag_00.push('yfx');
+            }
+            if (!(document.getElementById("dynamicsDiv005").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtyfxsm');
+            }
+            if (!(document.getElementById("dynamicsDiv006").style.visibility == "visible")) {
+                field_hidden_flag_00.push('jfx');
+            }
+            if (!(document.getElementById("dynamicsDiv007").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtzdsm');
+            }
+            if (!(document.getElementById("dynamicsDiv008").style.visibility == "visible")) {
+                field_hidden_flag_00.push('ycjxtxsb');
+            }
+            if (!(document.getElementById("dynamicsDiv009").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtycjxtxsb');
+            }
+            if (!(document.getElementById("dynamicsDiv010").style.visibility == "visible")) {
+                field_hidden_flag_00.push('sxgjzjb');
+            }
+            if (!(document.getElementById("dynamicsDiv011").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtsxgjzjb');
+            }
+            if (!(document.getElementById("dynamicsDiv012").style.visibility == "visible")) {
+                field_hidden_flag_00.push('mnxgrhjs');
+            }
+            if (!(document.getElementById("dynamicsDiv013").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtmixgrhjs');
+            }
+            if (!(document.getElementById("dynamicsDiv014").style.visibility == "visible")) {
+                field_hidden_flag_00.push('szqcsh');
+            }
+            if (!(document.getElementById("dynamicsDiv015").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtszqcyy');
+            }
+            objform.field_hidden_flag_00.value = field_hidden_flag_00.join(',');
+            if (fixThis != "") {
+                alert(fixThis);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function clearradio(radioname) {
+            var rn = document.getElementsByName(radioname);
+            for (i = 0; i < rn.length; i++) {
+                rn[i].checked = false;
+            }
+        }
+        linkFieldReadonly = false;
+        var linkFieldObjNameStr = ""
+        initAllLinkFieldDiv(linkFieldObjNameStr);
+    </script>
+</body>
+
+</html>

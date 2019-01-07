@@ -1,0 +1,8 @@
+{
+  "name": "yinhai-plugin",
+  "version": "0.0.1",
+  "dependencies": {
+    "oracledb": "^1.10.0",
+    "soap": "^0.16.0"
+  }
+}

@@ -1,0 +1,1054 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta charset="utf-8" />
+    <base href="http://hd.cnrds.net/hd/sdoc/listmrecord.jsp">
+    <link href="/hd/global/css/default.css.jsp" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/hd/global/js/popupdiv.js"></script>
+    <title>温声燕_钙剂List</title>
+  </head>
+
+  <body>
+    <b>钙剂</b>List  
+
+
+	  <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="window.location.href='/hd/carehistory.do?action=showformmulti&chid=927930123&sdocid=&tableid=gjyw&modifyflag=window.parent.global_modified&param=zl,4&comefromlink=null';return false;">
+	    Add</a>
+
+    <a target="_blank" href="/hd/sdoc.do?action=outputdata&rid=927930123&tableid=gjyw&modifyflag=window.parent.global_modified">
+      Export</a>
+    <a href="javascript:void(0);" onclick="clearimg();showmenuie5();">Stat.</a>
+    <table border=0 cellspacing=1 cellpadding=0 class="table-style">
+	    <tr>
+		    <td nowrap="nowrap">&nbsp;</td>
+		    
+		    <td nowrap="nowrap">Operation</td>
+		    
+		    <td nowrap="nowrap">
+			    
+		      
+			    <input type="checkbox" name= "rfield" ftype="singleselect" value="gjyw.sfsy" cvalue="是否使用" explainstr="0,是;1,否" title="ratio button value type"><b>是否使用</b>
+		    </td>
+		    
+		    <td nowrap="nowrap">
+			    
+		      
+			    <input type="checkbox" name= "rfield" ftype="date" value="gjyw.cfrq" cvalue="处方日期" title="date type"><b>处方日期</b>
+		    </td>
+		    
+		    <td nowrap="nowrap">
+			    
+		      
+			    <input type="checkbox" name= "rfield" ftype="numeric" value="gjyw.jl" cvalue="单次口服剂量" title="numerical value type"><b>单次口服剂量</b>
+		    </td>
+		    
+		    <td nowrap="nowrap">
+			    
+		      
+			    <input type="checkbox" name= "rfield" ftype="singleselect" value="gjyw.dwsj" cvalue="单位时间" explainstr="0,日;1,周;2,2周;3,4周" title="ratio button value type"><b>单位时间</b>
+		    </td>
+		    
+		    <td nowrap="nowrap">
+			    
+		      
+			    <input type="checkbox" name= "rfield" ftype="singleselect" value="gjyw.fycs" cvalue="服药次数" explainstr="0,停药;1,1次;2,2次;3,3次" title="ratio button value type"><b>服药次数</b>
+		    </td>
+		    
+	    </tr>
+      <script language="javascript">
+	     var recordNum = 0;
+      </script>
+	    
+    </table>
+    <div id="sort_div" STYLE="display: none;width:20;" class="popup-div-style">
+    </div>
+  </body>
+</html>
+
+
+
+
+
+<script type="text/javascript" src="/hd/stat/js/popupdiv.js"></script>
+<style>
+ .skin0 { 
+   padding-top:4px; 
+   cursor:default; 
+   font:menutext; 
+   position:absolute; 
+   text-align:left; 
+   font-family: "宋体"; 
+   font-size: 10pt; 
+   width:280px; /*宽度，可以根据实际的菜单项目名称的长度进行适当地调整*/ 
+   background-color:#F8F8FF; /*菜单的背景颜色方案，这里选择了系统默认的菜单颜色*/ 
+   border:1 solid buttonface; 
+   visibility:hidden; /*初始时，设置为不可见*/ 
+   border:2 outset buttonhighlight; 
+
+ } 
+</style>
+<div id="ie5menu" style="visibility:hidden;">		
+	<div id="groupcoldiv" style="width:100%;background-color:#F8F8FF;display:none">
+		choose X axis:<select name="gfieldlist" onchange="setgroupprop(this.value);showgcdiv();">   </select>
+	</div>
+	<div id="gcsettingdiv" style="width:100%;background-color:#F8F8FF;display:none">
+		<input type="checkbox" name="isgroup" onclick="chosegcsetting()">grouping
+		<div id="groupstrdiv"style="width:100%;background-color:#F8F8FF;display:none" >
+			grouping condition:<input type=button value="..." onclick="document.getElementById('statbut').disabled=true;if (document.getElementById('fieldcomb').value == 'DA') {popup(dategroupdiv,this,groupconditiondiv.offsetParent);} else {popup(groupconditiondiv,this,groupconditiondiv.offsetParent);}">
+			<textarea name="groupstr" title="groupStr1%[2007-1-1 0:0,2007-4-1 0:0)" style="width:200px;height:80px"></textarea><br>
+		</div>
+	</div>
+	<div id="dategroupdiv" style="width:75%;background-color: #F8F8FF;display:none ;position:absolute; " class="popup-div-style">
+		<table>
+			<tr><td>设置时间分组条件：</td></tr>
+			<tr><td>选择分组时间单位：<select name="dateunit" onchange="dateOnchange(this.value);">   </select></td></tr>
+			<tr><td>from:<input type=button value="<<" onclick="subtime(document.getElementById('datestart'),'sub')"><input type="text" name="datestart" style="width:95px"><input type=button value=">>" onclick="subtime(document.getElementById('datestart'),'add')"></td></tr>
+			<tr><td>to:<input type=button value="<<" onclick="subtime(document.getElementById('dateend'),'sub')"><input type="text" name="dateend" style="width:95px"><input type=button value=">>" onclick="subtime(document.getElementById('dateend'),'add')"></td></tr>
+			<tr><td>range:<input type="text" name="datespan" style="width:100px"></td></tr>
+			<tr><td><input type=button value="finished" onclick="dateGroupstr();document.getElementById('statbut').disabled=false;"><input type=button value="取消" onclick="unpop(dategroupdiv);document.getElementById('statbut').disabled=false;"></td></tr>
+		</table>
+	</div>
+	<div id="statmethoddiv" style="width:100%;background-color:#F8F8FF;display:none">
+		caculating method:<br>
+		<input type="radio" checked name="statmethod" value='sum'>sum&nbsp;
+		<input type="radio" name="statmethod" value='count'>number&nbsp;
+		<input type="radio" name="statmethod" value='averge'>mean&nbsp;
+		<input type="radio" name="statmethod" value='middnum'>median&nbsp;
+	</div>
+	<div id="groupconditiondiv" style="background-color: #F8F8FF;display:none ;position:absolute; " class="popup-div-style">
+		<table>
+			<tr><td>set groouping condition:</td></tr>
+			<tr><td>from:<input type="text" name="gcstart" style="width:50px">止：<input type="text" name="gcend" style="width:50px"></td></tr>
+			<tr><td>range:<input type="text" name="gcspan" style="width:100px"></td></tr>
+			<tr><td><input type=button value="finished" onclick="setgc();document.getElementById('statbut').disabled=false;"><input type=button value="cancel" onclick="unpop(groupconditiondiv);document.getElementById('statbut').disabled=false;"></td></tr>
+		</table>
+	</div>
+	<div id="stattypediv" style="width:100%;background-color: #F8F8FF;">
+		choose Stat. graph type:<br>
+		<img name="piechart" align="left" title="piegraph " onclick="clearimg();this.border=2;setstatpictype('piechart');" src="/hd/stat/images/piechart.gif">
+		<img name="barchart" align="left" title="histogram" onclick="clearimg();this.border=2;setstatpictype('barchart');" src="/hd/stat/images/barchart.gif">
+		<img name ="sandian" align="left" title="scattered chart" onclick="clearimg();this.border=2;setstatpictype('sandian');" src="/hd/stat/images/sandian.gif">
+		<img name="hplc" align="left" title="broken-line chart" onclick="clearimg();this.border=2;setstatpictype('hplc');" src="/hd/stat/images/hplc.gif">	
+		<img name="time" align="left" title="time series chart" onclick="clearimg();this.border=2;setstatpictype('time');" src="/hd/stat/images/hplc.gif">	
+	</div>	
+	<div id="ysettingdiv" style="width:100%;background-color: #F8F8FF;display:none">
+		<table>
+			<tr><td>Y axis scale:</td><td></td></tr>
+			<tr><td>from:<input type="text" name="ystart" style="width:50px"></td><td>to:<input type="text" name="yend" style="width:50px"></td></tr>
+			<tr><td colspan=2>range:<input type="text" name="yspan" style="width:100px"></td></tr>
+		</table>
+	</div>
+	<div id="sizediv" style="width:100%;background-color:#F8F8FF;">
+		<table>
+			<tr><td>图片宽：<input type="text" name="picwidth" style="width:50px" value="400">&nbsp;&nbsp;picture heighth:<input type="text" name="picheight" style="width:50px" value="400"></td><tr>
+		</table>
+	</div>
+	<br>
+	<div id="errordiv" style="width:100%;background-color: #F8F8FF;display:none">
+		<b>Stat.information:</b><br>
+		<div id="selectdiv" style="width:100%;background-color: #F8F8FF;">
+		</div>
+		<br>
+		The ways of columns assembled as follows are valuable?<br>
+		1,one column of ratio button option value<br>
+		2,one column of check box option value<br>
+		3,one column of value value <br>
+		4,one column of ratio button option value+ many columns of value<br>
+		5,one column of date value + many columns of numerical value<br>
+		6,one column of character value + many columns of value <br>
+		7,many columns of numerical value <br>
+		8、单列日期<br>
+		&nbsp;&nbsp;<input type=button value="cancel" onclick="unchoose();init();" >
+	</div>
+	<div id="buttondiv" style="width:100%;background-color: #F8F8FF;">				
+		&nbsp;&nbsp;&nbsp;<input type=button value="Stat." name="statbut" id="statbut" onclick="setparm();if(!check()) return false;statform.submit();">&nbsp;&nbsp;<input type=button value="cancel" onclick="unchoose();init();" >
+	</div>
+</div>
+
+<form name="statform" method="post" onsubmit="javascript:return form_submit(this);"
+  target="_blank" action="/hd/statpic.do?action=statdata">
+ 	<input type=hidden name="fieldcomb" id="fieldcomb" value="">
+ 	<input type=hidden name="pojoname" id="pojoname" value="">
+ 	<input type=hidden name="searchwhere" id="searchwhere" value="">
+ 	<input type=hidden name="groupprop" id="groupprop" value="">
+ 	<input type=hidden name="explainstr" id="explainstr" value="">
+ 	<input type=hidden name="grouptype" id="grouptype" value="">
+ 	<input type=hidden name="groupstr" id="groupstr" value="">
+ 	<input type=hidden name="smethod" id="statmethod" value="">
+ 	<input type=hidden name="ypropterty" id="ypropterty" value="">
+ 	<input type=hidden name="statpictype" id="statpictype" value="">
+ 	<input type=hidden name="isgroup" id="isgroup" value="">
+ 	<input type=hidden name="pwidth" id="pwidth" value="">
+ 	<input type=hidden name="pheight" id="pheight" value="">
+ 	<input type=hidden name="orderby" id="orderby" value="">
+</form>
+<script language="javascript">
+ var selectstr;
+ var now = new Date();
+ //选择统计字段组合类型：(1-单选1；2-多选1；3-数值1；4-单选1 数值多；5-日期1 数值多；6-字符1 数值多；7-数值多)
+ function setfieldcomb(fcStr){
+	 statform.fieldcomb.value=fcStr;
+ }
+ //设置pojo类
+ function setpojoname(pojonameStr){
+	 statform.pojoname.value=pojonameStr;
+ }
+ 
+ //调用界面查询字符串
+ function setsearchwhere(swStr){
+	 statform.searchwhere.value=swStr;
+ }
+ //用作分组的pojo的属性，即分组字段
+ function setgroupprop(gpStr){
+	 statform.groupprop.value=gpStr;
+ }
+ //如果分组字段是单选或者多选字段，设置解释字符串，格式如：m,男;f,女
+ function setexplainstr(explainstr){
+	 statform.explainstr.value=explainstr;
+ }
+ //分组类型（distinct,select,scope）
+ function setgrouptype(gtStr){
+	 statform.grouptype.value=gtStr;
+ }
+ //设置分组条件字符串
+ function setgroupstr(gsStr){
+	 statform.groupstr.value=gsStr;
+ }
+ //设置统计计算方法
+ function setstatmethod(smStr){
+	 statform.smethod.value=smStr;
+ }
+ //设置是否选中分组
+ function setgfield(){
+	 if (isgroup.checked) statform.isgroup.value="true";
+	 else statform.isgroup.value="false";
+ }
+ //设置Y轴的属性字段名
+ function setypropterty(){
+	 var ypStr ="";
+	 var rObj=document.getElementsByName("rfield");
+	 for (i=0;i<rObj.length;i++){
+	   if (rObj[i].checked) {
+	  	 if (rObj[i].ftype == "numeric") {
+	  		 if (ypStr.length > 0) ypStr += ";";
+	  		 ypStr+= rObj[i].value + "," + rObj[i].cvalue;
+	  	 }
+	   }
+	 }
+	 
+	 statform.ypropterty.value=ypStr;
+ }
+ //设置统计图类型
+ function setstatpictype(spStr){
+	 statform.statpictype.value=spStr;
+ }
+ //设置统计图宽度
+ function setpicwidth(pwstr){
+	 statform.pwidth.value=pwstr;
+ }
+ //设置统计图高度
+ function setpicheight(phstr){
+	 statform.pheight.value=phstr;
+ }
+ //set orderby
+ function setorderby(orderby){
+	 statform.orderby.value=orderby;
+ }
+ 
+ function init(){
+	 groupcoldiv.style.display='none';
+	 gcsettingdiv.style.display='none';
+	 groupstrdiv.style.display='none';
+	 groupconditiondiv.style.display='none';
+	 ysettingdiv.style.display='none';
+	 statmethoddiv.style.display='none';
+	 buttondiv.style.display='block';
+	 sizediv.style.display='block';
+	 errordiv.style.display='none';
+	 stattypediv.style.display='block';
+	 dategroupdiv.style.display='none';
+	 isgroup.checked=false;
+	 setgfield();
+	 document.getElementById('statbut').disabled=false;
+ }
+ 
+ function setparm(){
+	 setgroupstr(document.getElementById("groupstr").value.replace(/\r\n/g,";").replace(/-/g,"/"));
+	 var mObj=document.getElementsByName("statmethod");
+	 for (i=0;i<mObj.length;i++){
+		 if (mObj[i].checked) {
+		   setstatmethod(mObj[i].value);
+		   break;
+		 }
+	 }
+	 var objstr = document.getElementById("fieldcomb").value;
+	 
+	 var rObj=document.getElementsByName("rfield");
+	 for (i=0;i<rObj.length;i++){
+	   if (rObj[i].checked) {
+	  	 if (rObj[i].ftype == "numeric") {
+	  		 if (objstr == "NU"){
+	  			 setgroupprop(rObj[i].value + "," + rObj[i].cvalue);
+	  		 }
+	  	 }
+	   }
+	 }
+	 
+	 if (objstr == "NUNU") {
+		 setgroupprop(document.getElementById("gfieldlist").value);
+	 }  
+	 setpicwidth(document.getElementById("picwidth").value);  
+	 setpicheight(document.getElementById("picheight").value); 
+ }	
+ function chosegcsetting(){
+	 clearimg();
+	 setgfield()
+	 groupconditiondiv.style.display='none';
+	 document.getElementsByName("groupstr").value="";
+	 var objstr = document.getElementById("fieldcomb").value;
+	 if (isgroup.checked) {
+		 statmethoddiv.style.display='block';
+		 if (objstr != "STNU")	groupstrdiv.style.display='block';
+		 piechart.style.display='none';
+		 time.style.display='none';
+		 barchart.style.display='block';
+		 sandian.style.display='none';
+		 hplc.style.display='none';
+		 barchart.border=2;
+		 setstatpictype("barchart");
+	 }else {
+		 statmethoddiv.style.display='none';
+		 groupstrdiv.style.display='none';
+		 time.style.display='none';
+		 piechart.style.display='none';
+		 barchart.style.display='none';
+		 if (objstr == "DA"){
+			 barchart.style.display='block';
+			 barchart.border=2;
+			 setstatpictype("barchart");
+		 }else{
+			 sandian.style.display='block';
+			 hplc.style.display='block';
+			 sandian.border=2;
+			 setstatpictype("sandian");
+		 }
+	 }
+	 
+ }
+ 
+ function showmenuie5() { 
+	 init();
+	 var rightedge = document.body.clientWidth-event.clientX; 
+	 var bottomedge = document.body.clientHeight-event.clientY; 
+
+	 var ie5menu = document.getElementById('ie5menu');
+	 if (rightedge <ie5menu.offsetWidth) 
+		 ie5menu.style.left = document.body.scrollLeft + event.clientX - ie5menu.offsetWidth; 
+	 else 
+		 ie5menu.style.left = document.body.scrollLeft + event.clientX; 
+
+	 if (bottomedge <ie5menu.offsetHeight) 
+		 ie5menu.style.top = document.body.scrollTop + event.clientY - ie5menu.offsetHeight; 
+	 else 
+		 ie5menu.style.top = document.body.scrollTop + event.clientY; 
+	 clearimg();
+	 if (checkfield()) ie5menu.style.visibility = "visible"; 
+	 return false; 
+ } 
+ 
+ function unchoose(){
+	 var rObj=document.getElementsByName("rfield");
+	 for (i=0;i<rObj.length;i++){
+	   if (rObj[i].checked) {
+	  	 rObj[i].checked = false;
+	   }
+	 }
+	 ie5menu.style.visibility = 'hidden';
+	 init();
+ }
+ //去除统计图标上的边框
+ function clearimg(){
+	 piechart.border=0;
+	 barchart.border=0;
+	 sandian.border=0;
+	 hplc.border=0;
+	 setstatpictype("");
+ }
+ function getselectstr(){
+	 var str;
+	 if (selectstr.length > 0) str ="您选择了\"" + selectstr + "\",无法进行统计!";
+	 else str="您没有选择统计列，无法进行统计";
+	 return str;
+ }
+ 
+ 
+ //根据选择字段组合，生成div组合
+ function checkfield(){
+	 var rObj=document.getElementsByName("rfield");
+	 var date_num = 0;//选择字段组合中，类型为日期的字段总数
+	 var ss_num = 0;//。。。。。。。。。。。。单选。。。。
+	 var ms_num = 0;//...................多选......
+	 var str_num =0;//..................字符......
+	 var num_num =0;//...................数值......
+	 for (i=0;i<rObj.length;i++){
+	   if (rObj[i].checked) {
+	  	 if (rObj[i].ftype == "date") {
+	  		 date_num++;
+	  		 setgroupprop(rObj[i].value + "," + rObj[i].cvalue);
+	  	 }
+	  	 if (rObj[i].ftype == "singleselect") {
+	  		 ss_num++;
+	  		 setexplainstr(rObj[i].explainstr);
+	  		 setgroupprop(rObj[i].value + "," + rObj[i].cvalue);
+	  	 }
+	  	 if (rObj[i].ftype == "mutiselect") {
+	  		 ms_num++;
+	  		 setexplainstr(rObj[i].explainstr);
+	  		 setgroupprop(rObj[i].value + "," + rObj[i].cvalue);
+	  	 }
+	  	 if (rObj[i].ftype == "string") {
+		  	 str_num++;
+		  	 setgroupprop(rObj[i].value + "," + rObj[i].cvalue);
+	  	 }
+	  	 if (rObj[i].ftype == "numeric") num_num++;
+	   }
+	 }
+	 selectstr="";
+	 if (date_num > 0){
+	   if (selectstr.length > 0) selectstr +="、";
+	   selectstr +=  date_num + "列日期";
+	 }
+	 if (ss_num > 0 ) {
+	   if (selectstr.length > 0) selectstr +="、";
+	   selectstr +=  ss_num + "列单选";
+	 }
+	 if (ms_num > 0 ) {
+	   if (selectstr.length > 0) selectstr +="、";
+	   selectstr += ms_num + "列多选";	
+	 }
+	 if (str_num > 0 ) {
+	   if (selectstr.length > 0) selectstr +="、";
+	   selectstr += str_num + "列字符";
+	 }	
+	 if (num_num > 0 ){
+	   if (selectstr.length > 0) selectstr +="、";
+	   selectstr += num_num + "列数值";
+	 }
+	 //alert("date_num=" + date_num + "-ss_num=" + ss_num + "-ms_num=" + ms_num + "-str_num=" + str_num + "-num_num=" + num_num);
+	 
+	 //不考虑字符,字符型字段需要统计的需作为单选类型
+	 if (date_num ==1 && (ss_num + ms_num + str_num + num_num) == 0){
+		 //alert("日期1");
+		 createdateselect();
+		 document.getElementById("datestart").value=""+now.getFullYear();
+		 document.getElementById("dateend").value=""+now.getFullYear();
+		 document.getElementById("datespan").value="1";
+		 gcsettingdiv.style.display='block';
+		 isgroup.checked=true;
+		 groupstrdiv.style.display='block';
+		 piechart.style.display='none';
+		 barchart.style.display='block';
+		 sandian.style.display='none';
+		 hplc.style.display='none';
+		 time.style.display='none';
+		 barchart.border=2;
+		 setfieldcomb("DA");
+		 setgfield();
+		 setstatpictype("barchart");
+		 return true;	
+	 }
+
+	 if (ss_num ==1 && (date_num + ms_num + str_num + num_num) == 0){
+		 //alert("单选1");
+		 piechart.style.display='block';
+		 barchart.style.display='none';
+		 sandian.style.display='none';
+		 time.style.display='none';
+		 hplc.style.display='none';
+		 piechart.border=2;
+		 setfieldcomb("SS");
+		 setstatpictype("piechart");
+		 return true;
+	 }	
+	 if (ms_num ==1 && (date_num + ss_num + str_num + num_num) == 0){
+		 //alert("多选1");
+		 piechart.style.display='none';
+		 barchart.style.display='block';
+		 sandian.style.display='none';
+		 time.style.display='none';
+		 hplc.style.display='none';
+		 barchart.border=2;
+		 setfieldcomb("MS");
+		 setstatpictype("barchart");
+		 return true;
+	 }
+	 if (num_num == 1 && (str_num + ms_num + ss_num + date_num) == 0){
+		 //alert("数值1");
+		 gcsettingdiv.style.display='block';
+		 isgroup.checked=false;
+		 piechart.style.display='none';
+		 barchart.style.display='none';
+		 sandian.style.display='block';
+		 hplc.style.display='block';
+		 time.style.display='none';
+		 sandian.border=2;
+		 setfieldcomb("NU");
+		 setstatpictype("sandian");
+		 return true;
+	 }
+	 if (ss_num ==1 && num_num > 0 && (date_num + ms_num + str_num) == 0){
+		 //alert("单选1-数值多");
+		 statmethoddiv.style.display='block';
+		 piechart.style.display='none';
+		 barchart.style.display='block';
+		 sandian.style.display='none';
+		 hplc.style.display='none';
+		 time.style.display='none';
+		 barchart.border=2;
+		 setstatpictype("barchart");
+		 setfieldcomb("SSNU");
+		 setypropterty();
+		 return true;
+	 }
+	 if (date_num ==1 && num_num > 0 && (ss_num + ms_num + str_num) == 0){
+		 //alert("日期1-数值多");
+		 piechart.style.display='none';
+		 barchart.style.display='none';
+		 sandian.style.display='none';
+		 hplc.style.display='none';
+		 time.style.display='block';
+		 time.border=2;
+		 setstatpictype("time");
+		 setfieldcomb("DANU");
+		 setypropterty();
+		 return true;
+	 }
+	 if (str_num ==1 && num_num > 0 && (ss_num + ms_num + date_num) == 0){
+		 //alert("字符1-数值多");
+		 statmethoddiv.style.display='block';
+		 isgroup.checked=false;
+		 
+		 piechart.style.display='none';
+		 barchart.style.display='block';
+		 sandian.style.display='none';
+		 hplc.style.display='none';
+		 time.style.display='none';
+		 barchart.border=2;
+		 setstatpictype("barchart");
+		 setfieldcomb("STNU");
+		 setypropterty();
+		 setgfield()
+		 return true;
+	 }
+	 if (num_num > 1 && (ss_num + ms_num + date_num + str_num) == 0){
+		 //alert("数值多");
+		 createselect();
+		 groupcoldiv.style.display='block';
+		 //gcsettingdiv.style.display='block';
+		 isgroup.checked=false;
+		 piechart.style.display='none';
+		 barchart.style.display='none';
+		 sandian.style.display='block';
+		 hplc.style.display='block';
+		 time.style.display='none';
+		 sandian.border=2;
+		 setstatpictype("sandian");
+		 setfieldcomb("NUNU");
+		 setypropterty();
+		 return true;
+	 } else {
+		 sizediv.style.display='none';
+		 var ss = getselectstr();
+		 selectdiv.innerHTML=getselectstr();
+		 errordiv.style.display='block';
+		 buttondiv.style.display='none';
+		 stattypediv.style.display='none';
+		 return true;
+	 }
+ }
+ 
+ function createselect(){
+	 document.getElementById('gfieldlist').innerHTML='';   
+	 var rObj=document.getElementsByName("rfield");
+	 addselect("","index");
+	 for (i=0;i<rObj.length;i++){
+	   if (rObj[i].checked) {
+	  	 if (rObj[i].ftype == "numeric") {
+	  		 addselect(rObj[i].cvalue,rObj[i].value + "," + rObj[i].cvalue);
+	  	 }
+	   }
+	 }
+ }
+ //日期单位选择下拉框：年、月、周、日、时、分
+ function createdateselect(){
+	 document.getElementById('dateunit').innerHTML='';   
+	 adddateselect("年","year");
+	 adddateselect("月","month");
+	 adddateselect("日","day");
+	 adddateselect("时","hour");
+	 adddateselect("分","min");
+ }
+ function adddateselect(name,value){
+	 var obj=document.getElementById('dateunit');   
+   var ob = new Option(name,value);
+   obj.options.add(ob);   	
+ }
+ 
+ function addselect(name,value){
+	 var obj=document.getElementById('gfieldlist');   
+   var ob = new Option(name,value);
+   obj.options.add(ob);   	
+ }
+ 
+ 
+ 
+ function dateOnchange(value){
+	 setdefaulttime(value,document.getElementById('datestart'));
+	 setdefaulttime(value,document.getElementById('dateend'));
+ }
+ function setdefaulttime(value,obj){
+	 
+	 document.getElementById("datespan").value="1";
+	 if (value == "year"){
+		 var year = now.getFullYear();
+		 //alert(year);
+		 obj.value=year;
+	 }
+	 if (value == "month"){
+		 var month= now.getFullYear()+"-"+(now.getMonth()+1);
+		 obj.value=month;
+	 }
+	 if (value == "day"){
+		 var day = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate();
+		 obj.value=day;
+	 }
+	 if (value == "hour"){
+		 var hour = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours();
+		 obj.value=hour;
+	 }
+	 if (value == "min"){
+		 var min = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours() + ":" +now.getMinutes();
+		 obj.value=min;
+	 }
+ }
+ 
+ function subtime(obj,as){
+	 var value=obj.value;
+	 var timeunit=document.getElementById("dateunit").value;
+	 if (!isDateStr(value,timeunit)) {
+		 alert("'" + value + "'不是一个合适的日期表达式!");
+		 setdefaulttime(timeunit,obj);
+		 return false;
+	 }
+	 if (timeunit == 'year'){
+		 if (as=='add'){
+			 obj.value=parseInt(value)+1;
+		 } else if (as =='sub'){
+			 obj.value=parseInt(value)-1;
+			 
+		 }
+	 }
+	 if (timeunit == 'month'){
+		 var str=value.split("-");
+		 var year=str[0];
+		 var month=str[1];
+		 //alert(flag);
+		 if (as=='sub'){
+			 opertime(obj,'sub',"1",year,parseInt(month)-1,1);
+		 }else if (as == 'add'){
+			 opertime(obj,'add',"1",year,parseInt(month)-1,1);
+		 }
+	 }
+	 if (timeunit=='day'){
+		 var str=value.split("-");
+		 var year=str[0];
+		 var month=str[1];
+		 var day=str[2];
+		 //alert(as);
+		 if (as=='sub'){
+			 opertime(obj,'sub',"1",year,parseInt(month)-1,parseInt(day));
+		 }else if (as == 'add'){
+			 opertime(obj,'add',"1",year,parseInt(month)-1,parseInt(day));
+		 }
+		 
+	 }
+	 if (timeunit=='hour'){
+		 var str=value.split("-");
+		 var year=str[0];
+		 var month=str[1];
+		 var tempstr=str[2].split(" ");
+		 var date=tempstr[0];
+		 var hour=tempstr[1];
+		 if (as=='sub'){
+			 opertime(obj,'sub',"1",year,parseInt(month)-1,parseInt(date),hour);
+		 }else if (as == 'add'){
+			 opertime(obj,'add',"1",year,parseInt(month)-1,parseInt(date),hour);
+		 }
+	 }
+	 if (timeunit=='min'){
+		 var str=value.split("-");
+		 var year=str[0];
+		 var month=str[1];
+		 var tempstr=str[2].split(" ");
+		 var date=tempstr[0];
+		 var tstr=tempstr[1].split(":");
+		 var hour=tstr[0];
+		 var min=tstr[1];
+		 
+		 if (as=='sub'){
+			 opertime(obj,'sub',"1",year,parseInt(month)-1,parseInt(date),hour,min);
+		 }else if (as == 'add'){
+			 opertime(obj,'add',"1",year,parseInt(month)-1,parseInt(date),hour,min);
+		 }}
+	 
+ }
+ 
+ function opertime(oobj,mothod,span,year,month,day,hour,min){
+	 if (hour==null) hour=0;
+	 if (min == null) min=0;
+	 var td = new Date(year,month,day,hour,min);
+	 //alert("year="+year+",month="+month+",day="+day+",hour="+hour+",min="+min);
+	 //alert(td.toLocaleString());
+	 var timeunit=document.getElementById("dateunit").value;
+	 //alert(oobj.value);
+	 if (timeunit=='month'){
+		 if (mothod=='sub'){
+			 month=parseInt(month)-parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1);
+			 //alert("new time:" + td.toLocaleString());
+		 } else if (mothod=='add'){
+			 month=parseInt(month)+parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1);
+			 //alert("new time:" + td.toLocaleString());
+		 }
+	 }
+	 if (timeunit=='day'){
+		 if (mothod=='sub'){
+			 day=parseInt(day)-parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1) + "-" + td.getDate();
+		 } else if (mothod=='add'){
+			 day=parseInt(day)+ parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1) + "-" + td.getDate();
+		 }
+	 }
+	 if (timeunit=='hour'){
+		 if (mothod=='sub'){
+			 hour=parseInt(hour)-parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1) + "-" + td.getDate() + " " + td.getHours();
+		 } else if (mothod=='add'){
+			 hour=parseInt(hour)+ parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1) + "-" + td.getDate() + " " + td.getHours() ;
+		 }
+	 }	
+	 if (timeunit=='min'){
+		 if (mothod=='sub'){
+			 min=parseInt(min)-parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1) + "-" + td.getDate() + " " + td.getHours() + ":" + td.getMinutes();
+		 } else if (mothod=='add'){
+			 min=parseInt(min)+ parseInt(span);
+			 td = new Date(year,month,day,hour,min);
+			 oobj.value = td.getYear() + "-" + (td.getMonth()+1) + "-" + td.getDate() + " " + td.getHours() + ":" + td.getMinutes();
+		 }
+	 }
+	 
+ }
+ 
+ function addtime(obj){
+	 var value=obj.value;
+	 var timeunit=document.getElementById("dateunit").value;
+	 if (timeunit == 'year'){
+		 obj.value=parseInt(value)+1;
+	 }
+ }
+ 
+ 
+ function setgc(){
+	 var retstr="";
+	 
+	 var start = document.getElementById("gcstart").value;
+	 var send = document.getElementById("gcend").value;
+	 var span = document.getElementById("gcspan").value;
+
+	 if (span == null || span.length < 1){
+		 alert('请设置步长！')
+		 return false;
+	 }
+
+	 var gnum = Math.ceil((send-start)/span);
+	 if (gnum > 100) {
+		 alert("分组太多，重新设置分组条件！")
+		 return false;
+	 }
+	 for (var i=0;i<gnum;i++){
+		 estart = new Number(start) +  new Number(span* i);
+		 eend = new Number(estart) + new Number(span);
+		 retstr += "[" +  estart + "," + eend + ")";		
+		 if (i< new Number(gnum)-1)	 retstr+= "\r\n";
+	 }
+	 document.getElementById("groupstr").value = retstr;	
+	 document.getElementById("groupconditiondiv").style.display = "none"; 
+ }
+ 
+ function showgcdiv(){
+	 if (document.getElementById("gfieldlist").value == "index") 
+		 gcsettingdiv.style.display='none';
+	 else 
+		 gcsettingdiv.style.display='block';
+ }
+ function check(){
+	 var isgroup = document.getElementById("isgroup").value ;
+	 var groupstr = document.getElementById("groupstr").value ;
+	 if (statform.fieldcomb.value=="DA"){
+		 if (!document.getElementById("isgroup").checked || groupstr.length<1){
+			 alert("单列日期统计必须设置分组条件！");
+			 return false;
+		 }
+	 }
+	 var strw = document.getElementById("picwidth").value ;
+	 var strh = document.getElementById("picheight").value ;
+	 if(strw==null||strw==""||strh==null||strh=="") {
+		 alert("图片设置必须为正整数！");
+		 return false;
+	 }
+	 if (strw > 2000 || strh > 2000){
+		 alert("图片宽高不能大于2000！");
+		 return false;
+	 }
+	 reg = /^\+?[1-9][0-9]*$/;
+	 var bn = reg.test(strw) && reg.test(strh);
+	 if (!bn) alert("图片设置必须为正整数！");
+	 return reg.test(strw) && reg.test(strh);
+ }
+
+ if (document.all && window.print) { 
+	 ie5menu.className = "skin0"; 
+	 clearimg();
+	 init();
+	 //document.oncontextmenu = showmenuie5;  
+ } 
+ 
+ function dateGroupstr(){
+	 var dateunit = document.getElementById("dateunit").value ;
+	 var start = document.getElementById("datestart").value ;
+	 var end = document.getElementById("dateend").value ;
+	 var span = document.getElementById("datespan").value ;
+	 var sdate = getDateBystr(start,dateunit,'start');
+	 //alert(sdate);
+	 var edate = getDateBystr(end,dateunit,'end');
+	 if (edate == null) return false;
+	 var tempdate=sdate;
+	 var i=0;
+	 var retstr="";
+	 var rs="";
+	 while (tempdate < edate){
+		 retstr="[" + datetostr(tempdate);
+		 tempdate = adddate(tempdate,dateunit,span);
+		 if (tempdate > edate) tempdate = edate;
+		 retstr += "," + datetostr(tempdate)+")";
+		 i++;
+		 if (tempdate < edate) rs += retstr + "\r\n";
+		 else rs += retstr;
+	 } 
+	 document.getElementById("groupstr").value = rs;	
+	 document.getElementById("dategroupdiv").style.display = "none"; 
+	 
+ }
+ function datetostr(tempdate){
+	 return tempdate.getYear() + "-" + (tempdate.getMonth() + 1)+"-" + tempdate.getDate() + " " + tempdate.getHours() + ":" + tempdate.getMinutes();
+ }
+ 
+ function adddate(date,dateunit,span){
+	 if (dateunit=='year'){
+		 return new Date(date.getYear() + parseInt(span),date.getMonth(),date.getDate(),date.getHours(),date.getMinutes());
+	 }
+	 if (dateunit=='month'){
+		 return new Date(date.getYear(),date.getMonth()+ parseInt(span),date.getDate(),date.getHours(),date.getMinutes());
+	 }
+	 if (dateunit=='day'){
+		 return new Date(date.getYear(),date.getMonth(),date.getDate()+ parseInt(span),date.getHours(),date.getMinutes());
+	 }
+	 if (dateunit=='hour'){
+		 return new Date(date.getYear(),date.getMonth(),date.getDate(),date.getHours()+ parseInt(span),date.getMinutes());
+	 }
+	 if (dateunit=='min'){
+		 return new Date(date.getYear(),date.getMonth(),date.getDate(),date.getHours(),date.getMinutes()+ parseInt(span));
+	 }
+	 
+ }
+ 
+ function getDateBystr(str,unit,flag){
+	 if (!isDateStr(str,unit)) return null;
+	 if (unit=="year"){
+		 if (flag == 'start'){
+			 var td = new Date(str,0,1,0,0);
+			 return td;
+		 }else if (flag == 'end'){
+			 var td = new Date(str,11,31,23,59);
+			 return td;
+		 }
+	 }
+	 if (unit=="month"){
+		 var ss=str.split("-");
+		 var year=ss[0];
+		 var month=ss[1];
+		 if (flag=='start'){
+			 var td = new Date(year,month-1,1,0,0);
+			 return td;
+		 }else if(flag=='end'){
+			 var td = new Date(year,month,0,23,59);
+			 return td;
+		 }
+	 }
+	 if (unit=="day"){
+		 var ss= str.split("-");
+		 var year=ss[0];
+		 var month=ss[1];
+		 var date=ss[2];
+		 //alert(year+month+date);
+		 if (flag=='start'){
+			 var td = new Date(year,parseInt(month)-1,date,0,0);
+			 //alert(td);
+			 return td;
+		 } else if(flag=='end'){
+			 var td = new Date(year,parseInt(month)-1,date,23,59);//
+			 //alert(td);
+			 return td;
+		 }	
+	 }
+	 if (unit=="hour"){
+		 var ss= str.split("-");
+		 var year=ss[0];
+		 var month=ss[1];
+		 var ts=ss[2].split(" ");
+		 var date = ts[0];
+		 var hour = ts[1];
+		 
+		 if (flag=='start'){
+			 var td = new Date(year,month-1,date,hour,0);
+			 return td;
+		 } else if(flag=='end'){
+			 var td = new Date(year,month-1,date,hour,59);//
+			 return td;
+		 }
+	 }
+	 if (unit=="min"){
+		 var ss= str.split("-");
+		 var year=ss[0];
+		 var month=ss[1];
+		 var ts=ss[2].split(" ");
+		 var date = ts[0];
+		 var hms = ts[1].split(":");
+		 var hour= hms[0];
+		 var min = hms[1];
+		 var td = new Date(year,month-1,date,hour,min);
+		 return td;	
+	 }
+ }
+ function isDateStr(datestr,dateunit){
+	 if (dateunit=='year'){
+		 if (datestr.length!=4 || !test_int(datestr)) return false;
+	 }
+	 if (dateunit=='month'){
+		 var mstr = datestr.split("-");
+		 if (mstr==null || mstr.length!=2) return false;
+		 if (mstr[0].length!=4 || !test_int(mstr[0])) return false;
+		 if ((mstr[1].length!=1 && mstr[1].length!=2) || !test_int(mstr[1]) ) return false;
+	 }
+	 if (dateunit=='day'){
+		 var mstr = datestr.split("-");
+		 if (mstr==null || mstr.length!=3) return false;
+		 if (mstr[0].length!=4 || !test_int(mstr[0])) return false;
+		 if ((mstr[1].length!=1 && mstr[1].length!=2) || !test_int(mstr[1]) ) return false;
+		 if ((mstr[2].length!=1 && mstr[2].length!=2) || !test_int(mstr[2]) ) return false;
+	 }
+	 if (dateunit=='hour'){
+		 var mstr = datestr.split("-");
+		 if (mstr==null || mstr.length!=3) return false;
+		 if (mstr[0].length!=4 || !test_int(mstr[0])) return false;
+		 if ((mstr[1].length!=1 && mstr[1].length!=2) || !test_int(mstr[1]) ) return false;
+		 var daystr=mstr[2].split(" ");
+		 if (daystr==null || daystr.length!=2) return false;
+		 if (!test_int(daystr[0]) ||!test_int(daystr[1])) return false;
+	 }
+	 if (dateunit=='min'){
+		 var mstr = datestr.split("-");
+		 if (mstr==null || mstr.length!=3) return false;
+		 if (mstr[0].length!=4 || !test_int(mstr[0])) return false;
+		 if ((mstr[1].length!=1 && mstr[1].length!=2) || !test_int(mstr[1]) ) return false;
+		 var daystr=mstr[2].split(" ");
+		 if (daystr==null || daystr.length!=2) return false;
+		 if (!test_int(daystr[0])) return false;
+		 var minstr=daystr[1].split(":");
+		 if (minstr==null || minstr.length!=2) return false;
+		 if (!test_int(minstr[1]) || !test_int(minstr[0])) return false;
+	 }
+	 
+	 return true;
+ }
+ 
+ function test_int(a) {   
+	 var myReg = /^[0-9]*[0-9]$/;   
+	 if(myReg.test(a))   { return true;}    
+	 return false;   
+ }   
+ 
+</script>
+
+
+<script language="javascript">
+ //调用页面需调用该函数，将参数写入提交表单的隐藏域中
+ setpojoname("SDocMRecord as obj");
+ setsearchwhere("obj.rid=927930123 and obj.recordType='gjyw'" );
+ setorderby("obj.id");
+
+ function stat(rid,tableid,fieldid){
+	 var winWidth = 750;
+   var winHeight = 550;
+   var winret = window.open("/hd/sdoc.do?action=stat&rid="+rid+"&tableid="+tableid+"&fieldid="+fieldid,"stat",
+                            "status=yes, scrollbars=yes, resizable=yes,width=" + winWidth + ",height=" + winHeight);
+   winret.moveTo((screen.width - winWidth)/2,(screen.height - winHeight)/2);
+   winret.focus();
+	 return false;
+ }
+
+ function sorthtml(sdocid,order){
+	 var ret = "";
+	 for(i=0;i<recordNum;i++){	// recordNum是全局变量
+		 if(i==order-1) 
+			 ret += (i+1) + "<br>";
+		 else
+			 ret += "<a href=\"/hd/carehistory.do?action=sortmrecord&sdocid=" + sdocid
+				    + "&rid=927930123&sdoctableid=gjyw"
+				    + "&allreadonly=false"
+				    + "&toorder=" + (i+1) + "\" oncontextmenu=\"self.event.returnValue=false\" >" + (i+1) + "</a><br>";
+	 }
+	 return ret;
+ }
+</script>

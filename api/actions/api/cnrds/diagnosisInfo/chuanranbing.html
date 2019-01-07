@@ -1,0 +1,317 @@
+<!-- http://hd.cnrds.net/hd/carehistory.do?action=showformmulti&chid=927930123&tableid=crb&sdocid=935821575&readonly=true&allreadonly=false&modifyflag=window.parent.global_modified&param=fx,3 -->
+<html lang="en">
+
+<head>
+    <base href="http://hd.cnrds.net/hd/sdoc/form/crb.jsp">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta charset = "utf-8">
+    <title>
+        传染病诊断
+    </title>
+    <link href="/hd/global/css/default.css.jsp" rel="stylesheet" type="text/css">
+    <script language="JavaScript" src="/hd/global/js/encode.js"></script>
+    <script language="JavaScript" src="/hd/global/js/dicdiv.js"></script>
+    <script language="javascript" src="/hd/global/js/check.js"></script>
+    <script type="text/javascript" src="/hd/global/js/popupdiv.js"></script>
+    <script language="JavaScript" src="../js/constraintdiv.js" />"></script>
+    <script type="text/javascript" src="/hd/global/js/sdoc_autovalue.js"></script>
+    <script type="text/javascript" src="../js/linkfield.js"></script>
+
+
+
+
+    <script language="javascript">
+        confirmToDelete = "Are you sure to delete it?";
+    </script>
+
+
+
+
+    <script language="javascript">
+        urlgetdata = "/hd/diclib.do?action=refreshdiv";
+        urlfeedback = "/hd/diclib.do?action=recorditem";
+        urlsavedic = "/hd/diclib.do?action=showaddormodifydiclibform";
+    </script>
+    <STYLE TYPE="text/css">
+        .innerDivTable-style {
+            LINE-HEIGHT: 14px;
+            BACKGROUND-COLOR: #aab1d7
+        }
+        
+        .innerDivTable-style TR {
+            BACKGROUND-COLOR: #ffffff
+        }
+        
+        .innerDivTable-style TD {
+            PADDING-LEFT: 3px;
+            FONT-SIZE: 10px;
+            PADDING-BOTTOM: 1px;
+            PADDING-TOP: 2px;
+            FONT-FAMILY: Arial, Helvetica, sans-serif, "SongTi"
+        }
+        
+        .innerDivTable-style A {
+            TEXT-DECORATION: none
+        }
+    </STYLE>
+    <div id="testdiv" STYLE="display:none;
+	                           Z-INDEX: 100;
+	                           width=202; 
+	                           height=300;
+	                           BORDER-RIGHT: darkgray 1pt solid;
+                             PADDING-RIGHT: 0px;
+                             BORDER-TOP: darkgray 1pt solid;
+                             PADDING-LEFT: 0px;
+                             PADDING-BOTTOM: 0px;
+                             MARGIN: 0px;
+                             BORDER-LEFT: darkgray 1pt solid;
+                             PADDING-TOP: 0px;
+                             BORDER-BOTTOM: darkgray 1pt solid;
+                             BACKGROUND-COLOR: Ivory;
+                             ">
+        <img BORDER=0 src="/hd/images/diclib/dichead.gif" class="drag"><input type="image" src="/hd/images/diclib/closewin.gif" onclick="hidemenuie5();return false;">
+
+        <table width="200" border=0 cols="2">
+            <form name="form_diclib" method="post" onsubmit="javascript:return f();" action="/hd/diclib.do?action=showaddormodifydiclibform&flag=savedic" target="_blank">
+                <tr>
+                    <td colspan=2>
+                        <input type='checkbox' name="dicType" value="A" checked/>
+                        <font style='color:white;background-color:mediumorchid;padding-top:2px;padding-left:2px'>Medical Advice </font>
+                        <input type='checkbox' name="dicType" value="B" checked/>
+                        <font style='color:white;background-color:chocolate;padding-top:2px;padding-left:2px'>ICD </font>
+                        <input type='checkbox' name="dicType" value="Z" checked/>
+                        <font style='color:white;background-color:forestgreen;padding-top:2px;padding-left:2px'>Customized</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <INPUT TYPE="text" style="width:80pt" ID="aText" NAME="aText" VALUE="" onkeydown="if(event.keyCode==13){event.keyCode=0;return false}" onkeyup="clickEnt()">
+                        <INPUT TYPE="button" ID="subBtn" VALUE="Search" title="Searching..." ONCLICK="javascript:var obj=document.getElementById('aText');findName(obj.value,1);" onkeydown="javascript:NumKeyDown();">
+                        <INPUT TYPE="button" ID="saveBtn" VALUE="Save" title="Content inputed saving as dictionary items..." onclick="javascript:return f();" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <div id="innerdiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=80>　<input type="button" name="upPage_btn" title="UpPage" value="<<" onclick="upPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                        <input type="button" name="downPage_btn" value=">>" title="DownPage" onclick="downPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                    <td>
+                        <div id="pageDiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+            </form>
+        </table>
+
+
+        <iframe id="iframediv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:200px; height:298px; z-index:-1; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+    </div>
+
+    <script language="javascript">
+        function f() {
+            if (trim(document.getElementById('aText').value) != "") {
+                document.form_diclib.submit();
+                return true;
+            }
+            return false;
+        }
+
+        function getDicType() {
+            dicTypeString = ""; // 全局变量
+            with(document.form_diclib) {
+                for (var i = 0; i < dicType.length; i++) {
+                    if (dicType[i].checked) {
+                        if ("" != dicTypeString) dicTypeString += ",";
+                        dicTypeString += dicType[i].value;
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <link type="text/css" rel="StyleSheet" href="/hd/global/css/rightmenu.css" />
+    <div id="ie5menu" class="skin0" onMouseover="highlightie5()" onMouseout="lowlightie5()" onClick="jumptoie5();">
+
+        <div class="menuitems" js="showspecialcode();">
+            <img border="0" src="/hd/images/rightmenu/specialcode.gif"> Insert Symbol</div>
+
+        <div class="menuitems" js="showDiv_RClick(global_rightmenu_id,'/hd/sdoc/form/crb.jsp');">
+            <img border="0" src="/hd/images/rightmenu/diclibfind.gif"> Dictionary Query</div>
+
+
+
+        <iframe id="backdiv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:180px; height:60px; z-index:-2; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+
+    </div>
+    <script language="JavaScript1.2" src="/hd/global/js/rightmenu.js"></script>
+
+
+
+
+
+    <script language="javascript">
+        /*可以使用全局变量
+                var global_rightmenu_id;　//当前控件的ID
+                var global_rightmenu_param;　//需要传递的参数，可以不设置
+              */
+        function prepareMenu(domainname) {
+            //根据domainname设定菜单项的是否可见
+
+        }
+
+        function showspecialcode() {
+            var winWidth = 430;
+            var winHeight = 400;
+            var winret = window.open("/hd/global/funcjsp/specialcode.jsp?inputid=" + global_rightmenu_id, "showspecialcode",
+                "status=yes, scrollbars=yes, resizable=yes,width=" + winWidth + ",height=" + winHeight);
+            winret.moveTo((screen.width - winWidth) / 2, (screen.height - winHeight) / 3);
+            winret.focus();
+            return false;
+        }
+
+        function clickstr(str) {
+            //alert(str);
+            objevent = document.getElementById(global_rightmenu_id);
+            insertAtCaret(objevent, str);
+        }
+    </script>
+
+    <script language=javascript>
+        var modifytime = null;
+
+        function hasmodified() {}
+
+        function ismodified() {
+            return false;
+        }
+
+        function autosave() {
+
+            if (window.parent.global_modified) {
+                nowdate = new Date();
+                if (modifytime != null && nowdate - modifytime > 36000000)
+                    if (form_submit(form_sdoctable)) form_sdoctable.submit(); //alert("System prompt:please save data!");
+                setTimeout('autosave()', 36000000);
+            }
+        }
+    </script>
+</head>
+
+<body onload="window.focus();window.top.status='';setTimeout('autosave()',600000);">
+
+    <script language="javascript">
+        var whole_constraint_string = "dynamicShow(\'dynamicsDiv004\',\'jbzl\',\'checkbox\',\'5\',\'dynamicsDiv003\');";
+    </script>
+    Browse?
+    <b>传染病诊断</b>
+    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" 　title="Back" onclick="javascript:window.history.go(-1);return false;">
+        <img src="/hd/images/arrow_left.gif" border=0>
+    </a>
+    <form name="form_sdoctable" method="post" onsubmit="javascript:var frmSubmit=form_submit(this);if(frmSubmit)window.parent.global_modified=false;return frmSubmit;" action="/hd/sdoc.do?action=savemulti">
+        <table width="580" border="0" cellpadding="0" cellspacing="1" class="table-style">
+            <tr id="dynamicsDiv001" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">诊断日期
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" name="zdrq" size="8" value="2015-08-25">
+                    <IMG style="cursor:hand" alt="Please input correct date" onclick="showx = window.screen.width/2 - 100 ;showy = window.screen.height/2  -100; newWINwidth = 210 + 4 + 18;retval = window.showModalDialog('/hd/global/js/calpopup/Calendardlg.jsp?by=100&ey=20', '', 'dialogWidth:197px; dialogHeight:210px; dialogLeft:'+showx+'px; dialogTop:'+showy+'px; status:no; directories:yes;scrollbars:no;Resizable=no; '  );if( retval != null ){zdrq.value = retval;}return false;" src="/hd/global/js/calpopup/datetime.gif" width=16 height=16>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv002" style="visibility:visible;display:block">
+                <td class="fieldclass" colspan=2>传染病诊断</td>
+            </tr>
+            <tr id="dynamicsDiv003" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">疾病种类
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="jbzl_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="jbzl_0" name="jbzl" value="6" checked>无</label>
+                    <br> <label for="jbzl_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="jbzl_1" name="jbzl" value="0" >丙肝</label>
+                    <br> <label for="jbzl_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="jbzl_2" name="jbzl" value="1" >乙肝</label>
+                    <br> <label for="jbzl_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="jbzl_3" name="jbzl" value="2" >艾滋病</label>
+                    <br> <label for="jbzl_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="jbzl_4" name="jbzl" value="3" >梅毒</label>
+                    <br> <label for="jbzl_5"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="jbzl_5" name="jbzl" value="4" >结核</label>
+                    <br> <label for="jbzl_6"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="jbzl_6" name="jbzl" value="5" >其它</label>
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv004" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....其它请说明 </td>
+                <td width="420">
+                    <textarea onfocus="hasmodified();" onclick="" onblur="" id="qtqsm" name="qtqsm" cols="50" rows="3" oncontextmenu="show_right_menu(this.id); return false;"></textarea>
+
+                </td>
+            </tr>
+
+
+        </table>
+        <input type="hidden" name="rid" value="927930123" />
+        <input type="hidden" name="sdocid" value="935821575" />
+        <input type="hidden" name="param" value="fx,3" />
+        <input type="hidden" name="modifyflag" value="window.parent.global_modified" />
+        <input type="hidden" name="comefromlink" value="null" />
+        <input type="hidden" name="sdoctableid" value="crb" />
+        <input type="hidden" name="id" value="927796654" />
+        <input type="hidden" name="field_hidden_flag_00" value="" />
+    </form>
+    <script language="javascript">
+        global_modified = false;
+        eval(whole_constraint_string);
+
+        function form_submit(objform) {
+            var fixThis = "";
+            var field_hidden_flag_00 = new Array();
+            reg = /^[0-9]{4}\-{1}[0-9]{1,2}\-{1}[0-9]{1,2}$/;
+            if (objform.zdrq.value != "") {
+                if (!reg.test(objform.zdrq.value)) {
+                    alert('Invalid date');
+                    return false;
+                }
+            }
+            if (document.getElementById("dynamicsDiv001").style.visibility == "visible" && (objform.zdrq.value == null || objform.zdrq.value == "")) fixThis += "[诊断日期] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv001").style.visibility == "visible")) {
+                field_hidden_flag_00.push('zdrq');
+            }
+            if (document.getElementById("dynamicsDiv003").style.visibility == "visible" && !checkChecked(objform.jbzl)) fixThis += "[疾病种类] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv003").style.visibility == "visible")) {
+                field_hidden_flag_00.push('jbzl');
+            }
+            if (!(document.getElementById("dynamicsDiv004").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtqsm');
+            }
+            objform.field_hidden_flag_00.value = field_hidden_flag_00.join(',');
+            if (fixThis != "") {
+                alert(fixThis);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function clearradio(radioname) {
+            var rn = document.getElementsByName(radioname);
+            for (i = 0; i < rn.length; i++) {
+                rn[i].checked = false;
+            }
+        }
+        linkFieldReadonly = true;
+        var linkFieldObjNameStr = ""
+        initAllLinkFieldDiv(linkFieldObjNameStr);
+    </script>
+</body>
+
+</html>

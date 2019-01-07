@@ -1,0 +1,621 @@
+<!-- http://hd.cnrds.net/hd/carehistory.do?action=showformmulti&chid=927930123&tableid=txcf&sdocid=935821587&readonly=true&allreadonly=false&modifyflag=window.parent.global_modified&param=zh,1 -->
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <base href="http://hd.cnrds.net/hd/sdoc/form/txcf.jsp">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>
+        透析处方（至少每3个月填写一次，每次处方改变也须填写）
+    </title>
+    <link href="/hd/global/css/default.css.jsp" rel="stylesheet" type="text/css">
+    <script language="JavaScript" src="/hd/global/js/encode.js"></script>
+    <script language="JavaScript" src="/hd/global/js/dicdiv.js"></script>
+    <script language="javascript" src="/hd/global/js/check.js"></script>
+    <script type="text/javascript" src="/hd/global/js/popupdiv.js"></script>
+    <script language="JavaScript" src="../js/constraintdiv.js" />"></script>
+    <script type="text/javascript" src="/hd/global/js/sdoc_autovalue.js"></script>
+    <script type="text/javascript" src="../js/linkfield.js"></script>
+
+
+
+
+    <script language="javascript">
+        confirmToDelete = "Are you sure to delete it?";
+    </script>
+
+
+
+
+    <script language="javascript">
+        urlgetdata = "/hd/diclib.do?action=refreshdiv";
+        urlfeedback = "/hd/diclib.do?action=recorditem";
+        urlsavedic = "/hd/diclib.do?action=showaddormodifydiclibform";
+    </script>
+    <STYLE TYPE="text/css">
+        .innerDivTable-style {
+            LINE-HEIGHT: 14px;
+            BACKGROUND-COLOR: #aab1d7
+        }
+        
+        .innerDivTable-style TR {
+            BACKGROUND-COLOR: #ffffff
+        }
+        
+        .innerDivTable-style TD {
+            PADDING-LEFT: 3px;
+            FONT-SIZE: 10px;
+            PADDING-BOTTOM: 1px;
+            PADDING-TOP: 2px;
+            FONT-FAMILY: Arial, Helvetica, sans-serif, "SongTi"
+        }
+        
+        .innerDivTable-style A {
+            TEXT-DECORATION: none
+        }
+    </STYLE>
+    <div id="testdiv" STYLE="display:none;
+	                           Z-INDEX: 100;
+	                           width=202; 
+	                           height=300;
+	                           BORDER-RIGHT: darkgray 1pt solid;
+                             PADDING-RIGHT: 0px;
+                             BORDER-TOP: darkgray 1pt solid;
+                             PADDING-LEFT: 0px;
+                             PADDING-BOTTOM: 0px;
+                             MARGIN: 0px;
+                             BORDER-LEFT: darkgray 1pt solid;
+                             PADDING-TOP: 0px;
+                             BORDER-BOTTOM: darkgray 1pt solid;
+                             BACKGROUND-COLOR: Ivory;
+                             ">
+        <img BORDER=0 src="/hd/images/diclib/dichead.gif" class="drag"><input type="image" src="/hd/images/diclib/closewin.gif" onclick="hidemenuie5();return false;">
+
+        <table width="200" border=0 cols="2">
+            <form name="form_diclib" method="post" onsubmit="javascript:return f();" action="/hd/diclib.do?action=showaddormodifydiclibform&flag=savedic" target="_blank">
+                <tr>
+                    <td colspan=2>
+                        <input type='checkbox' name="dicType" value="A" checked/>
+                        <font style='color:white;background-color:mediumorchid;padding-top:2px;padding-left:2px'>Medical Advice </font>
+                        <input type='checkbox' name="dicType" value="B" checked/>
+                        <font style='color:white;background-color:chocolate;padding-top:2px;padding-left:2px'>ICD </font>
+                        <input type='checkbox' name="dicType" value="Z" checked/>
+                        <font style='color:white;background-color:forestgreen;padding-top:2px;padding-left:2px'>Customized</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <INPUT TYPE="text" style="width:80pt" ID="aText" NAME="aText" VALUE="" onkeydown="if(event.keyCode==13){event.keyCode=0;return false}" onkeyup="clickEnt()">
+                        <INPUT TYPE="button" ID="subBtn" VALUE="Search" title="Searching..." ONCLICK="javascript:var obj=document.getElementById('aText');findName(obj.value,1);" onkeydown="javascript:NumKeyDown();">
+                        <INPUT TYPE="button" ID="saveBtn" VALUE="Save" title="Content inputed saving as dictionary items..." onclick="javascript:return f();" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <div id="innerdiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=80>　<input type="button" name="upPage_btn" title="UpPage" value="<<" onclick="upPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                        <input type="button" name="downPage_btn" value=">>" title="DownPage" onclick="downPage();return false;" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;">
+                    </td>
+                    <td>
+                        <div id="pageDiv" onkeydown="javascript:if(event.keyCode==8) event.returnValue=false;"></div>
+                    </td>
+                </tr>
+            </form>
+        </table>
+
+
+        <iframe id="iframediv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:200px; height:298px; z-index:-1; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+    </div>
+
+    <script language="javascript">
+        function f() {
+            if (trim(document.getElementById('aText').value) != "") {
+                document.form_diclib.submit();
+                return true;
+            }
+            return false;
+        }
+
+        function getDicType() {
+            dicTypeString = ""; // 全局变量
+            with(document.form_diclib) {
+                for (var i = 0; i < dicType.length; i++) {
+                    if (dicType[i].checked) {
+                        if ("" != dicTypeString) dicTypeString += ",";
+                        dicTypeString += dicType[i].value;
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <link type="text/css" rel="StyleSheet" href="/hd/global/css/rightmenu.css" />
+    <div id="ie5menu" class="skin0" onMouseover="highlightie5()" onMouseout="lowlightie5()" onClick="jumptoie5();">
+
+        <div class="menuitems" js="showspecialcode();">
+            <img border="0" src="/hd/images/rightmenu/specialcode.gif"> Insert Symbol</div>
+
+        <div class="menuitems" js="showDiv_RClick(global_rightmenu_id,'/hd/sdoc/form/txcf.jsp');">
+            <img border="0" src="/hd/images/rightmenu/diclibfind.gif"> Dictionary Query</div>
+
+
+
+        <iframe id="backdiv" src="javascript:false" style="position:absolute; visibility:inherit; top:0px; left:0px; width:180px; height:60px; z-index:-2; filter='progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';"></iframe>
+
+    </div>
+    <script language="JavaScript1.2" src="/hd/global/js/rightmenu.js"></script>
+
+
+
+
+
+    <script language="javascript">
+        /*可以使用全局变量
+                var global_rightmenu_id;　//当前控件的ID
+                var global_rightmenu_param;　//需要传递的参数，可以不设置
+              */
+        function prepareMenu(domainname) {
+            //根据domainname设定菜单项的是否可见
+
+        }
+
+        function showspecialcode() {
+            var winWidth = 430;
+            var winHeight = 400;
+            var winret = window.open("/hd/global/funcjsp/specialcode.jsp?inputid=" + global_rightmenu_id, "showspecialcode",
+                "status=yes, scrollbars=yes, resizable=yes,width=" + winWidth + ",height=" + winHeight);
+            winret.moveTo((screen.width - winWidth) / 2, (screen.height - winHeight) / 3);
+            winret.focus();
+            return false;
+        }
+
+        function clickstr(str) {
+            //alert(str);
+            objevent = document.getElementById(global_rightmenu_id);
+            insertAtCaret(objevent, str);
+        }
+    </script>
+
+    <script language=javascript>
+        var modifytime = null;
+
+        function hasmodified() {}
+
+        function ismodified() {
+            return false;
+        }
+
+        function autosave() {
+
+            if (window.parent.global_modified) {
+                nowdate = new Date();
+                if (modifytime != null && nowdate - modifytime > 36000000)
+                    if (form_submit(form_sdoctable)) form_sdoctable.submit(); //alert("System prompt:please save data!");
+                setTimeout('autosave()', 36000000);
+            }
+        }
+    </script>
+</head>
+
+<body onload="window.focus();window.top.status='';setTimeout('autosave()',600000);">
+
+    <script language="javascript">
+        var whole_constraint_string = "dynamicShow(\'dynamicsDiv007\',\'hdfcs\',\'radio\',\'3\',\'dynamicsDiv006\');dynamicShow(\'dynamicsDiv010\',\'hpcs\',\'radio\',\'3\',\'dynamicsDiv009\');dynamicShow(\'dynamicsDiv014,dynamicsDiv015,dynamicsDiv016,dynamicsDiv017,dynamicsDiv018,dynamicsDiv019,dynamicsDiv020\',\'txnsy\',\'checkbox\',\'0\',\'dynamicsDiv013\');dynamicShow(\'dynamicsDiv021\',\'txnsy\',\'checkbox\',\'1\',\'dynamicsDiv013\');dynamicShow(\'dynamicsDiv016\',\'jlznd\',\'radio\',\'3\',\'dynamicsDiv015\');dynamicShow(\'dynamicsDiv018\',\'glznd\',\'radio\',\'3\',\'dynamicsDiv017\');dynamicShow(\'dynamicsDiv027\',\'txmsm\',\'checkbox\',\'6\',\'dynamicsDiv026\');";
+    </script>
+    Browse?
+    <b>透析处方（至少每3个月填写一次，每次处方改变也须填写）</b>
+    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" 　title="Back" onclick="javascript:window.history.go(-1);return false;">
+        <img src="/hd/images/arrow_left.gif" border=0>
+    </a>
+    <form name="form_sdoctable" method="post" onsubmit="javascript:var frmSubmit=form_submit(this);if(frmSubmit)window.parent.global_modified=false;return frmSubmit;" action="/hd/sdoc.do?action=savemulti">
+        <table width="580" border="0" cellpadding="0" cellspacing="1" class="table-style">
+            <tr id="dynamicsDiv001" style="visibility:visible;display:block">
+                <td class="fieldclass" colspan=2>【注：】至少每3个月填写一次，每次处方改变也须填写</td>
+            </tr>
+            <tr id="dynamicsDiv002" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">处方日期
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" name="cfrq" size="8" value="2015-08-25">
+                    <IMG style="cursor:hand" alt="Please input correct date" onclick="showx = window.screen.width/2 - 100 ;showy = window.screen.height/2  -100; newWINwidth = 210 + 4 + 18;retval = window.showModalDialog('/hd/global/js/calpopup/Calendardlg.jsp?by=100&ey=20', '', 'dialogWidth:197px; dialogHeight:210px; dialogLeft:'+showx+'px; dialogTop:'+showy+'px; status:no; directories:yes;scrollbars:no;Resizable=no; '  );if( retval != null ){cfrq.value = retval;}return false;" src="/hd/global/js/calpopup/datetime.gif" width=16 height=16>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv003" style="visibility:visible;display:block">
+                <td class="fieldclass" colspan=2>处方</td>
+            </tr>
+            <tr id="dynamicsDiv004" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">HD次数
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="HD次数" name="hdcs" title="Decimal .value range: " size="8" value="3.0"> 次/每周【填写平均每周透析次数，可填写小数】
+                </td>
+            </tr>
+            <tr id="dynamicsDiv005" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">HD治疗时间
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="HD治疗时间" name="hdzlsj" title="Decimal .value range: 0-8" size="8" value="4.0"> 小时/次
+                </td>
+            </tr>
+            <tr id="dynamicsDiv006" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">HDF次数
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('hdfcs');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="hdfcs_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hdfcs_0" name="hdfcs" value="0" >1次/周</label><br> <label for="hdfcs_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hdfcs_1" name="hdfcs" value="1" checked>1次/2周</label><br> <label for="hdfcs_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hdfcs_2" name="hdfcs" value="2" >1次/4周</label><br> <label for="hdfcs_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hdfcs_3" name="hdfcs" value="3" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv007" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....其它HDF次数说明 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qthdfcs" name="qthdfcs" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv008" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">HDF治疗时间 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="HDF治疗时间" name="hdfzlsj" title="Decimal .value range: 0-8" size="8" value="4.0"> 小时/次
+                </td>
+            </tr>
+            <tr id="dynamicsDiv009" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">HP次数
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('hpcs');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="hpcs_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hpcs_0" name="hpcs" value="0" >1次/周</label><br> <label for="hpcs_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hpcs_1" name="hpcs" value="1" >1次/2周</label><br> <label for="hpcs_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hpcs_2" name="hpcs" value="2" >1次/4周</label><br> <label for="hpcs_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="hpcs_3" name="hpcs" value="3" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv010" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....其它HP次数说明 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qthpcs" name="qthpcs" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv011" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">HP治疗时间 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="HP治疗时间" name="hpzjsj" title="Decimal .value range: 0-4" size="8" value=""> 小时/次
+                </td>
+            </tr>
+            <tr id="dynamicsDiv012" style="visibility:visible;display:block">
+                <td class="fieldclass" colspan=2>透析浓缩液</td>
+            </tr>
+            <tr id="dynamicsDiv013" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">透析浓缩液
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="txnsy_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txnsy_0" name="txnsy" value="0" checked>透析浓缩A液</label>
+                    <br> <label for="txnsy_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txnsy_1" name="txnsy" value="1" checked>透析浓缩B液</label>
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv014" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....透析浓缩A液
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('txnsay');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="txnsay_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="txnsay_0" name="txnsay" value="0" >商品化成品</label><br> <label for="txnsay_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="txnsay_1" name="txnsay" value="1" checked>商品化干粉</label><br> <label for="txnsay_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="txnsay_2" name="txnsay" value="2" >中心供液</label><br> <label for="txnsay_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="txnsay_3" name="txnsay" value="3" >自行配制</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv015" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....透析液钾离子浓度
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('jlznd');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="jlznd_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jlznd_0" name="jlznd" value="0" checked>2.0 mmol/L</label><br> <label for="jlznd_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jlznd_1" name="jlznd" value="1" >3.0 mmol/L</label><br> <label for="jlznd_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jlznd_2" name="jlznd" value="2" >4.0 mmol/L</label><br> <label for="jlznd_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="jlznd_3" name="jlznd" value="3" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv016" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其他钾离子浓度值 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="其他钾离子浓度值" name="qtjlzndz" title="Decimal .value range: " size="8" value=""> mmol/L
+                </td>
+            </tr>
+            <tr id="dynamicsDiv017" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....透析液钙离子浓度
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('glznd');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="glznd_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="glznd_0" name="glznd" value="0" >1.25 mmol/L</label><br> <label for="glznd_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="glznd_1" name="glznd" value="1" checked>1.5 mmol/L</label><br> <label for="glznd_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="glznd_2" name="glznd" value="2" >1.75 mmol/L</label><br> <label for="glznd_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="glznd_3" name="glznd" value="3" >其它</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv018" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">........其他鈣离子浓度值 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="18" alt="其他鈣离子浓度值" name="qtglznd" title="Decimal .value range: " size="8" value=""> mmol/L
+                </td>
+            </tr>
+            <tr id="dynamicsDiv019" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....含糖透析液
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('ht');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="ht_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ht_0" name="ht" value="0" >是</label><br> <label for="ht_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ht_1" name="ht" value="1" checked>否 </label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv020" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....氨基酸透析液
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('ajs');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="ajs_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ajs_0" name="ajs" value="0" >是</label><br> <label for="ajs_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="ajs_1" name="ajs" value="1" checked>否 </label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv021" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....透析浓缩B液
+                    <a href="javascript:void(0);" oncontextmenu="event.returnValue=false;" onclick="javascript:clearradio('txnsby');return false;">
+                        <img src="/hd/images/delete2.gif" border=0 alt="Clear me">
+                    </a>
+                </td>
+                <td width="420">
+                    <label for="txnsby_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="txnsby_0" name="txnsby" value="0" >商品化成品</label><br> <label for="txnsby_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="txnsby_1" name="txnsby" value="1" checked>商品化干粉</label><br> <label for="txnsby_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="txnsby_2" name="txnsby" value="3" >自行配制</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv022" style="visibility:visible;display:block">
+                <td class="fieldclass" colspan=2>透析器、滤器</td>
+            </tr>
+            <tr id="dynamicsDiv023" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">类型
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="type_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="type_0" name="type" value="0" >国产</label>
+                    <br> <label for="type_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="type_1" name="type" value="1" checked>进口</label>
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv024" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">通量
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="tl_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="tl_0" name="tl" value="0" >高通量</label><br> <label for="tl_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="tl_1" name="tl" value="1" checked>低通量</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv025" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">使用
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="usage_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="usage_0" name="usage" value="0" checked>一次性使用</label><br> <label for="usage_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="usage_1" name="usage" value="1" >复用</label>
+                </td>
+            </tr>
+            <tr id="dynamicsDiv026" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">透析膜
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="txmsm_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txmsm_0" name="txmsm" value="1" >聚砜膜</label>
+                    <br> <label for="txmsm_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txmsm_1" name="txmsm" value="2" >聚甲基丙烯酸甲酯膜</label>
+                    <br> <label for="txmsm_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txmsm_2" name="txmsm" value="3" checked>其它合成膜</label>
+                    <br> <label for="txmsm_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txmsm_3" name="txmsm" value="4" >醋酸纤维膜</label>
+                    <br> <label for="txmsm_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txmsm_4" name="txmsm" value="5" >血仿膜</label>
+                    <br> <label for="txmsm_5"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="checkbox" id="txmsm_5" name="txmsm" value="6" >其它</label>
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv027" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">....其它请说明 </td>
+                <td width="420">
+                    <input onfocus="hasmodified();" onclick="" onblur="" type="text" maxLength="50" style="width:300" id="qt" name="qt" value="" oncontextmenu="show_right_menu(this.id); return false;">
+
+                </td>
+            </tr>
+            <tr id="dynamicsDiv028" nowrap style="visibility:visible;display:block">
+                <td width="160" valign="top">膜面积
+                    <font color="red">*</font>
+                </td>
+                <td width="420">
+                    <label for="mmj_0"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mmj_0" name="mmj" value="0" ><1.2  (m^2)</label><br> <label for="mmj_1"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mmj_1" name="mmj" value="1" >1.2---  (m^2)</label><br> <label for="mmj_2"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mmj_2" name="mmj" value="2" checked>1.4---  (m^2)</label><br> <label for="mmj_3"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mmj_3" name="mmj" value="3" >1.6--- (m^2)</label><br> <label for="mmj_4"><input onfocus="hasmodified();" onclick="eval(whole_constraint_string);" onblur=""  type="radio" id="mmj_4" name="mmj" value="4" >>1.8  (m^2)</label>
+                </td>
+            </tr>
+
+
+        </table>
+        <input type="hidden" name="rid" value="927930123" />
+        <input type="hidden" name="sdocid" value="935821587" />
+        <input type="hidden" name="param" value="zh,1" />
+        <input type="hidden" name="modifyflag" value="window.parent.global_modified" />
+        <input type="hidden" name="comefromlink" value="null" />
+        <input type="hidden" name="sdoctableid" value="txcf" />
+        <input type="hidden" name="id" value="927192703" />
+        <input type="hidden" name="field_hidden_flag_00" value="" />
+    </form>
+    <script language="javascript">
+        global_modified = false;
+        eval(whole_constraint_string);
+
+        function form_submit(objform) {
+            var fixThis = "";
+            var field_hidden_flag_00 = new Array();
+            reg = /^[0-9]{4}\-{1}[0-9]{1,2}\-{1}[0-9]{1,2}$/;
+            if (objform.cfrq.value != "") {
+                if (!reg.test(objform.cfrq.value)) {
+                    alert('Invalid date');
+                    return false;
+                }
+            }
+            if (document.getElementById("dynamicsDiv002").style.visibility == "visible" && (objform.cfrq.value == null || objform.cfrq.value == "")) fixThis += "[处方日期] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv002").style.visibility == "visible")) {
+                field_hidden_flag_00.push('cfrq');
+            }
+            if (!(isAFloat(objform.hdcs.value))) {
+                fixThis += "[" + objform.hdcs.alt + "] Please input decimal.\n";
+            }
+            if (document.getElementById("dynamicsDiv004").style.visibility == "visible" && (objform.hdcs.value == null || objform.hdcs.value == "")) fixThis += "[HD次数] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv004").style.visibility == "visible")) {
+                field_hidden_flag_00.push('hdcs');
+            }
+            if (!(isAFloat(objform.hdzlsj.value))) {
+                fixThis += "[" + objform.hdzlsj.alt + "] Please input decimal.\n";
+            } else if (objform.hdzlsj.value != "") {
+                value_range_and_legal = new Number(objform.hdzlsj.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 0.0 && value_range_and_legal <= 8.0);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.hdzlsj.alt + "] Out of range! \n";
+                }
+            }
+            if (document.getElementById("dynamicsDiv005").style.visibility == "visible" && (objform.hdzlsj.value == null || objform.hdzlsj.value == "")) fixThis += "[HD治疗时间] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv005").style.visibility == "visible")) {
+                field_hidden_flag_00.push('hdzlsj');
+            }
+            if (!(document.getElementById("dynamicsDiv006").style.visibility == "visible")) {
+                field_hidden_flag_00.push('hdfcs');
+            }
+            if (!(document.getElementById("dynamicsDiv007").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qthdfcs');
+            }
+            if (!(isAFloat(objform.hdfzlsj.value))) {
+                fixThis += "[" + objform.hdfzlsj.alt + "] Please input decimal.\n";
+            } else if (objform.hdfzlsj.value != "") {
+                value_range_and_legal = new Number(objform.hdfzlsj.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 0.0 && value_range_and_legal <= 8.0);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.hdfzlsj.alt + "] Out of range! \n";
+                }
+            }
+            if (!(document.getElementById("dynamicsDiv008").style.visibility == "visible")) {
+                field_hidden_flag_00.push('hdfzlsj');
+            }
+            if (!(document.getElementById("dynamicsDiv009").style.visibility == "visible")) {
+                field_hidden_flag_00.push('hpcs');
+            }
+            if (!(document.getElementById("dynamicsDiv010").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qthpcs');
+            }
+            if (!(isAFloat(objform.hpzjsj.value))) {
+                fixThis += "[" + objform.hpzjsj.alt + "] Please input decimal.\n";
+            } else if (objform.hpzjsj.value != "") {
+                value_range_and_legal = new Number(objform.hpzjsj.value);
+                boolean_range_and_legal = false;
+                boolean_range_and_legal = boolean_range_and_legal || (value_range_and_legal >= 0.0 && value_range_and_legal <= 4.0);
+                if (!boolean_range_and_legal) {
+                    fixThis += "[" + objform.hpzjsj.alt + "] Out of range! \n";
+                }
+            }
+            if (!(document.getElementById("dynamicsDiv011").style.visibility == "visible")) {
+                field_hidden_flag_00.push('hpzjsj');
+            }
+            if (document.getElementById("dynamicsDiv013").style.visibility == "visible" && !checkChecked(objform.txnsy)) fixThis += "[透析浓缩液] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv013").style.visibility == "visible")) {
+                field_hidden_flag_00.push('txnsy');
+            }
+            if (!(document.getElementById("dynamicsDiv014").style.visibility == "visible")) {
+                field_hidden_flag_00.push('txnsay');
+            }
+            if (!(document.getElementById("dynamicsDiv015").style.visibility == "visible")) {
+                field_hidden_flag_00.push('jlznd');
+            }
+            if (!(isAFloat(objform.qtjlzndz.value))) {
+                fixThis += "[" + objform.qtjlzndz.alt + "] Please input decimal.\n";
+            }
+            if (!(document.getElementById("dynamicsDiv016").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtjlzndz');
+            }
+            if (!(document.getElementById("dynamicsDiv017").style.visibility == "visible")) {
+                field_hidden_flag_00.push('glznd');
+            }
+            if (!(isAFloat(objform.qtglznd.value))) {
+                fixThis += "[" + objform.qtglznd.alt + "] Please input decimal.\n";
+            }
+            if (!(document.getElementById("dynamicsDiv018").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qtglznd');
+            }
+            if (!(document.getElementById("dynamicsDiv019").style.visibility == "visible")) {
+                field_hidden_flag_00.push('ht');
+            }
+            if (!(document.getElementById("dynamicsDiv020").style.visibility == "visible")) {
+                field_hidden_flag_00.push('ajs');
+            }
+            if (!(document.getElementById("dynamicsDiv021").style.visibility == "visible")) {
+                field_hidden_flag_00.push('txnsby');
+            }
+            if (document.getElementById("dynamicsDiv023").style.visibility == "visible" && !checkChecked(objform.type)) fixThis += "[类型] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv023").style.visibility == "visible")) {
+                field_hidden_flag_00.push('type');
+            }
+            if (document.getElementById("dynamicsDiv024").style.visibility == "visible" && !radioChecked(objform.tl)) fixThis += "[通量] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv024").style.visibility == "visible")) {
+                field_hidden_flag_00.push('tl');
+            }
+            if (document.getElementById("dynamicsDiv025").style.visibility == "visible" && !radioChecked(objform.usage)) fixThis += "[使用] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv025").style.visibility == "visible")) {
+                field_hidden_flag_00.push('usage');
+            }
+            if (document.getElementById("dynamicsDiv026").style.visibility == "visible" && !checkChecked(objform.txmsm)) fixThis += "[透析膜] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv026").style.visibility == "visible")) {
+                field_hidden_flag_00.push('txmsm');
+            }
+            if (!(document.getElementById("dynamicsDiv027").style.visibility == "visible")) {
+                field_hidden_flag_00.push('qt');
+            }
+            if (document.getElementById("dynamicsDiv028").style.visibility == "visible" && !radioChecked(objform.mmj)) fixThis += "[膜面积] Can not be blank\n";
+            if (!(document.getElementById("dynamicsDiv028").style.visibility == "visible")) {
+                field_hidden_flag_00.push('mmj');
+            }
+            objform.field_hidden_flag_00.value = field_hidden_flag_00.join(',');
+            if (fixThis != "") {
+                alert(fixThis);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function clearradio(radioname) {
+            var rn = document.getElementsByName(radioname);
+            for (i = 0; i < rn.length; i++) {
+                rn[i].checked = false;
+            }
+        }
+        linkFieldReadonly = true;
+        var linkFieldObjNameStr = ""
+        initAllLinkFieldDiv(linkFieldObjNameStr);
+    </script>
+</body>
+
+</html>
